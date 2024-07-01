@@ -1,12 +1,16 @@
-import {Stack} from "expo-router";
+import { Stack } from "expo-router";
 import React from "react";
+import { ThemeProvider } from '@rneui/themed';
+import theme from "../../theme/theme";
 
-export default function TabsLayout(){
+export default function TabsLayout() {
     return (
-        <Stack>
-            <Stack.Screen name="(tabs)" options={{
-                headerShown:false
-            }}/>
-        </Stack>
+        <ThemeProvider theme={theme}>
+            <Stack>
+                <Stack.Screen name="(tabs)" options={{
+                    headerShown: false
+                }} />
+            </Stack>
+        </ThemeProvider>
     )
 }
