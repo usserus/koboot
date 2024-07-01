@@ -1,22 +1,26 @@
-import {Tabs} from "expo-router";
+import { Stack } from "expo-router";
 import React from "react";
+import { ThemeProvider } from '@rneui/themed';
+import theme from "../../theme/theme";
 
-export default function TabsLayout(){
+export default function TabsLayout() {
     return (
-        <Tabs>
-            <Tabs.Screen name="index" options={{
-                headerTitle: "Home",
-                title: "Home"
-            }}/>
-            <Tabs.Screen name="(boat)" options={{
-                headerShown: false
-            }}/>
-            <Tabs.Screen name="(bridges)" options={{
-                headerShown: false
-            }}/>
-            <Tabs.Screen name="(harbors)" options={{
-                headerShown: false
-            }}/>
-        </Tabs>
+        <ThemeProvider theme={theme}>
+            <Stack>
+                <Stack.Screen name="index" options={{
+                    headerTitle: "Home",
+                    title: "Home"
+                }}/>
+                <Stack.Screen name="(bridges)" options={{
+                    headerShown:false
+                }}/>
+                <Stack.Screen name="(harbors)" options={{
+                    headerShown:false
+                }}/>
+                <Stack.Screen name="(boat)" options={{
+                    headerShown:false
+                }}/>
+            </Stack>
+        </ThemeProvider>
     )
 }
