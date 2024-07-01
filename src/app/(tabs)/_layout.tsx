@@ -8,9 +8,17 @@ export default function TabsLayout(){
                 headerTitle: "Home",
                 title: "Home"
             }}/>
-            <Tabs.Screen name="../../src/screens/Boat" options={{
+            <Tabs.Screen name="Boat" options={{
                 headerTitle: "Boat",
                 title: "Boat"
+            }}/>
+            <Tabs.Screen name="Bridges" options={{
+                headerTitle: "Bridges",
+                title: "Bridges"
+            }}/>
+            <Tabs.Screen name="Harbors" options={{
+                headerTitle: "Harbors",
+                title: "Harbors"
             }}/>
         </Tabs>
     )
