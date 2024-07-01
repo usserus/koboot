@@ -1,10 +1,10 @@
 import React from "react";
 import {View,Text} from "react-native";
 
-export default function HomePage(){
+export default function BridgeDetail(){
     return (
         <View>
-            <Text>Harbors</Text>
+            <Text>BridgeDetail</Text>
         </View>
     )
 }

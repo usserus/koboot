@@ -1,12 +1,22 @@
-import {Stack} from "expo-router";
+import {Tabs} from "expo-router";
 import React from "react";
 
 export default function TabsLayout(){
     return (
-        <Stack>
-            <Stack.Screen name="(tabs)" options={{
-                headerShown:false
+        <Tabs>
+            <Tabs.Screen name="index" options={{
+                headerTitle: "Home",
+                title: "Home"
             }}/>
-        </Stack>
+            <Tabs.Screen name="(boat)" options={{
+                headerShown: false
+            }}/>
+            <Tabs.Screen name="(bridges)" options={{
+                headerShown: false
+            }}/>
+            <Tabs.Screen name="(harbors)" options={{
+                headerShown: false
+            }}/>
+        </Tabs>
     )
 }
