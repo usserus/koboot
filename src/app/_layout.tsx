@@ -1,10 +1,34 @@
 import React from "react";
 import { ThemeProvider } from '@rneui/themed';
 import theme from "../../theme/theme";
-import { Tabs } from "expo-router";
+import { Tabs, SplashScreen } from "expo-router";
+import { useFonts } from 'expo-font';
+import { useEffect } from "react";
 
-
+SplashScreen.preventAutoHideAsync();
 export default function TabsLayout() {
+
+    const [loaded, error] = useFonts({
+        'FireSans-Medium':require('../../assets/fonts/FiraSans-Medium.ttf'),
+        'FireSans-Regular':require('../../assets/fonts/FiraSans-Regular.ttf'),
+    });
+
+    useEffect(() => {
+        if (error) throw error;
+    }, [error]);
+
+    useEffect(() => {
+        if (loaded) {
+            SplashScreen.hideAsync();
+        }
+    }, [loaded]);
+
+    if (!loaded) {
+        return null;
+    }
+
+
+
     return (
         <ThemeProvider theme={theme}>
             <Tabs>
