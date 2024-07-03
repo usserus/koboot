@@ -41,7 +41,6 @@ export const globalStyles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         type: "clear",
-
     },
     SecondaryButtonText: {
         color: theme.darkColors.primary,
