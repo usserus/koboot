@@ -4,7 +4,7 @@ import {View,Text} from "react-native";
 export default function BoatEditPage(){
     return (
         <View>
-            <Text>Boat Edit Page</Text>
+            <Text>Boat ashdflksEdit Page</Text>
         </View>
     )
 }

@@ -10,6 +10,7 @@ export const globalStyles = StyleSheet.create({
         fontWeight: "medium",
         fontFamily: "FireSans-Medium",
     },
+
     container: {
         padding: 20,
         backgroundColor: "#ffffff",
@@ -18,8 +19,24 @@ export const globalStyles = StyleSheet.create({
         flex: 1,
         backgroundColor: theme.lightColors.primary,
     },
+    outerContainerWhite: {
+        flex: 1,
+        backgroundColor: theme.lightColors.primary,
+    },
     card: {
 
+    },
+    button: {
+        backgroundColor: theme.lightColors.primary,
+        borderRadius: borderRadius,
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    buttonText: {
+        color: theme.lightColors.white,
+        fontSize: 16
     }
 });
 
