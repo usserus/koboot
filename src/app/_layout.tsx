@@ -4,6 +4,10 @@ import theme from "../../theme/theme";
 import { Tabs, SplashScreen } from "expo-router";
 import { useFonts } from 'expo-font';
 import { useEffect } from "react";
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { globalStyles } from "../../theme/global";
 
 SplashScreen.preventAutoHideAsync();
 export default function TabsLayout() {
@@ -31,19 +35,45 @@ export default function TabsLayout() {
 
     return (
         <ThemeProvider theme={theme}>
-            <Tabs>
+            <Tabs screenOptions={{
+                tabBarStyle: {
+                    backgroundColor: theme.lightColors.primary,
+                    height: 80,
+                    paddingTop: 10,
+                    paddingBottom: 20
+                },
+                tabBarActiveTintColor: '#ffffff',
+                tabBarInactiveTintColor: '#C1C1C1'
+            }}>
                 <Tabs.Screen name="index" options={{
-                    headerTitle: "Home",
-                    title: "Home"
-                }}/>
-                <Tabs.Screen name="(bridges)" options={{
-                    headerShown:false
+                    headerTitle: "Dein Standort",
+                    title: "Home",
+                    headerTintColor: theme.lightColors.primary,
+                    headerTitleStyle: globalStyles.headlineText,
+                    tabBarIcon: ({ color, size }) => (
+                        <FontAwesome name="map-signs" color={color} size={size} />
+                    )
                 }}/>
                 <Tabs.Screen name="(harbors)" options={{
-                    headerShown:false
+                    headerShown:false,
+                    title: "Häfen",
+                    tabBarIcon: ({ color, size }) => (
+                        <MaterialCommunityIcons name="lighthouse" color={color} size={size} />
+                    )
+                }}/>
+                <Tabs.Screen name="(bridges)" options={{
+                    headerShown:false,
+                    title: "Brücken",
+                    tabBarIcon: ({ color, size }) => (
+                        <FontAwesome6 name="bridge-water" color={color} size={size} />
+                    )
                 }}/>
                 <Tabs.Screen name="(boat)" options={{
-                    headerShown:false
+                    headerShown:false,
+                    title: "Boot",
+                    tabBarIcon: ({ color, size }) => (
+                        <FontAwesome6 name="sailboat" color={color} size={size} />
+                    )
                 }}/>
             </Tabs>
         </ThemeProvider>

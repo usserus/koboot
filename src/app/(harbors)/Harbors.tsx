@@ -8,7 +8,7 @@ export default function HarborPage(){
         <View>
             <Text>Harbors</Text>
             <Button title="Solid">Hi</Button>
-            <Pressable onPress={() => router.push("1")}>
+            <Pressable onPress={() => router.push("0")}>
                 <Text>See Harbor Details</Text>
             </Pressable>
         </View>
