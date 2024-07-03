@@ -22,17 +22,30 @@ export const globalStyles = StyleSheet.create({
     card: {
 
     },
-    button: {
+    PrimaryButton: {
         backgroundColor: theme.lightColors.primary,
         borderRadius: borderRadius,
-        paddingVertical: 10,
-        paddingHorizontal: 20,
+        paddingVertical: 2,
+        paddingHorizontal: 10,
         alignItems: "center",
         justifyContent: "center",
     },
-    buttonText: {
+    PrimaryButtonText: {
         color: theme.lightColors.white,
-        fontSize: 16
+    },
+    SecondaryButton: {
+        backgroundColor: theme.lightColors.background,
+        borderRadius: borderRadius,
+        paddingVertical: 2,
+        paddingHorizontal: 10,
+        alignItems: "center",
+        justifyContent: "center",
+        type: "clear",
+
+    },
+    SecondaryButtonText: {
+        color: theme.darkColors.primary,
+        fontSize: 14
     },
     roundedBackgroundContainerBottomGreen: {
         borderBottomEndRadius: 40,

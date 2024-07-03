@@ -62,24 +62,28 @@ export default function BoatEditPage() {
                     </View>
                     <Divider style={localStyles.divider} />
                     <View style={localStyles.nameContainer}>
-                        <Button style={globalStyles.button}
-                                titleStyle={globalStyles.buttonText}
-                                >
+                        <Button style={globalStyles.SecondaryButton}  titleStyle={globalStyles.SecondaryButtonText}>
                             Foto löschen
                         </Button>
-                        <Text style={localStyles.valueLabel}>Foto aufnehmen</Text>
+                        <Button style={[globalStyles.SecondaryButton, localStyles.valueLabel]}  titleStyle={globalStyles.SecondaryButtonText}>
+                            Foto aufnehmen
+                        </Button>
                     </View>
                     <View style={localStyles.nameContainer}>
                         {/* Einzeiliger Kommentar */}
                         <Text style={localStyles.nameLabel}> </Text>
-                        <Text style={localStyles.valueLabel}>Foto hochladen</Text>
+                        <Button style={[globalStyles.SecondaryButton, localStyles.valueLabel]}  titleStyle={globalStyles.SecondaryButtonText}>
+                            Foto hochladen
+                        </Button>
                     </View>
                 </View>
 
                 <View style={globalStyles.container}>
-                    <Pressable style={globalStyles.button} onPress={() => router.push("BoatEdit")}>
-                        <Text style={globalStyles.buttonText}>Boot speichern</Text>
-                    </Pressable>
+                    <Button style={globalStyles.PrimaryButton}  titleStyle={globalStyles.PrimaryButtonText}>
+                        <Pressable style={globalStyles.PrimaryButton} onPress={() => router.push("BoatEdit")}>
+                            <Text style={globalStyles.PrimaryButtonText}>Boot speichern</Text>
+                        </Pressable>
+                    </Button>
                 </View>
 
 
