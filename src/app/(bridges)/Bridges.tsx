@@ -39,7 +39,7 @@ export default function BridgesPage() {
                     />
 
 
-                    <Pressable onPress={() => router.push("1")}>
+                    <Pressable onPress={() => router.push("2")}>
                         <Text>See Bridge Details</Text>
                     </Pressable>
 

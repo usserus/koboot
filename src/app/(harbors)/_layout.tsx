@@ -8,7 +8,7 @@ export default function HarborLayout(){
                 headerTitle: "Harbors",
                 title: "Harbors"
             }}/>
-            <Stack.Screen name="[id]" options={{
+            <Stack.Screen name="[harborId]" options={{
                 headerTitle: "HarborDetail",
                 title: "HarborDetail"
             }}/>

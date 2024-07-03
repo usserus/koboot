@@ -8,7 +8,7 @@ export default function BridgeLayout(){
                 headerTitle: "Bridges",
                 title: "Bridges"
             }}/>
-            <Stack.Screen name="[id]" options={{
+            <Stack.Screen name="[bridgeId]" options={{
                 headerTitle: "BridgeDetail",
                 title: "BridgeDetail"
             }}/>
