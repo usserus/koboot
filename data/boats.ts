@@ -6,6 +6,6 @@ export const boats = [
         width: 6.5,
         height: 5,
         depth: 5,
-        image: 'fahrradbrueckekonstanz.jpg',
+        image: require('../assets/images/fahrradbrueckekonstanz.jpg'),
     },
 ];
