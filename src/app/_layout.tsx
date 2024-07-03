@@ -47,7 +47,7 @@ export default function TabsLayout() {
             }}>
                 <Tabs.Screen name="index" options={{
                     headerTitle: "Dein Standort",
-                    title: "Home",
+                    title: "Standort",
                     headerTintColor: theme.lightColors.primary,
                     headerTitleStyle: globalStyles.headlineText,
                     tabBarIcon: ({ color, size }) => (
@@ -69,8 +69,9 @@ export default function TabsLayout() {
                     )
                 }}/>
                 <Tabs.Screen name="(boat)" options={{
-                    headerShown:false,
+                    headerTitle: "Mein Boot",
                     title: "Boot",
+                    headerTintColor: theme.lightColors.primary,
                     tabBarIcon: ({ color, size }) => (
                         <FontAwesome6 name="sailboat" color={color} size={size} />
                     )
