@@ -40,7 +40,7 @@ export const globalStyles = StyleSheet.create({
         paddingHorizontal: 10,
         alignItems: "center",
         justifyContent: "center",
-        type: "clear",
+      
 
     },
     SecondaryButtonText: {
