@@ -8,17 +8,18 @@ import CustomCard from "../../../components/CustomCard";
 import { bridges } from "../../../data/bridges";
 import { FlatList } from "react-native";
 
-
 export default function BridgesPage() {
     return (
         <>
             <View style={globalStyles.outerContainerGreen}>
 
-                <View style={[globalStyles.container, localStyles.containerGreen]}></View>
+                <View style={[globalStyles.container, localStyles.containerGreen]}>
+                    <Text style={[globalStyles.headlineText, { color: 'white' }]}>Alle Brücken in deiner Nähe</Text>
+                </View>
 
                 <View style={[globalStyles.container, localStyles.containerWhite]}>
                     <FlatList data={bridges} renderItem={({ item }) => (
-                        <Pressable onPress={() => router.push({pathname: item.bridgeName, params: item})}>
+                        <Pressable onPress={() => router.push(item.bridgeName)}>
                             <CustomCard
                                 title={item.bridgeName}
                                 location={item.location}

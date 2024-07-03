@@ -48,21 +48,21 @@ export default function TabsLayout() {
             }}>
                 <Tabs.Screen name="index" options={{
                     headerTitle: "Dein Standort",
-                    title: "Home",
+                    title: "Standort",
                     headerTintColor: theme.lightColors.primary,
                     headerTitleStyle: globalStyles.headlineText,
                     tabBarIcon: ({ color, size }) => (
                         <FontAwesome name="map-signs" color={color} size={size} />
                     )
                 }}/>
-                <Tabs.Screen name="(harbors)" options={{
+                <Tabs.Screen name="harbors" options={{
                     headerShown:false,
                     title: "Häfen",
                     tabBarIcon: ({ color, size }) => (
                         <MaterialCommunityIcons name="lighthouse" color={color} size={size} />
                     )
                 }}/>
-                <Tabs.Screen name="(bridges)" options={{
+                <Tabs.Screen name="bridges" options={{
                     headerShown:false,
                     title: "Brücken",
                     tabBarIcon: ({ color, size }) => (
@@ -70,8 +70,9 @@ export default function TabsLayout() {
                     )
                 }}/>
                 <Tabs.Screen name="(boat)" options={{
-                    headerShown:false,
+                    headerTitle: "Mein Boot",
                     title: "Boot",
+                    headerTintColor: theme.lightColors.primary,
                     tabBarIcon: ({ color, size }) => (
                         <FontAwesome6 name="sailboat" color={color} size={size} />
                     )

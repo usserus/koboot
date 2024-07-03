@@ -1,12 +1,53 @@
-import React from "react";
-import {View, Text, Pressable, ScrollView, StyleSheet} from "react-native";
-import {borderRadius, globalStyles} from "../../../theme/global";
+import React, { useState, useEffect } from "react";
+import { View, Text, Pressable, ScrollView, StyleSheet, TextInput, Image } from "react-native";
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import { globalStyles } from "../../../theme/global";
 import theme from "../../../theme/theme";
-import { router } from "expo-router";
-import { Divider } from "@rneui/themed";
-import { Button } from '@rneui/themed';
+import { Divider, Button } from '@rneui/themed';
+import { boats } from "../../../data/boats";
 
 export default function BoatEditPage() {
+
+    const [boat, setBoat] = useState(null);
+
+    const [isEditing, setIsEditing] = useState({
+        name: false,
+        manufacturer: false,
+        length: false,
+        width: false,
+        height: false,
+        depth: false,
+    });
+
+    useEffect(() => {
+        //load the boat data from the boats array - from boats.ts
+        setBoat(boats[0]);
+    }, []);
+
+    const handleChange = (key, value) => {
+        setBoat({ ...boat, [key]: value });
+    };
+
+    const handleSave = () => {
+        // Update the boat in the boats array
+        const updatedBoats = boats.map(b => (b.name === boat.name ? boat : b));
+        // Update the global boats array
+        boats.splice(0, boats.length, ...updatedBoats);
+        setIsEditing({
+            name: false,
+            manufacturer: false,
+            length: false,
+            width: false,
+            height: false,
+            depth: false,
+        });
+    };
+
+    const toggleEdit = (field) => {
+        setIsEditing(prev => ({ ...prev, [field]: !prev[field] }));
+    };
+
+
     return (
         <ScrollView style={{ flex: 1 }}>
             <View style={[globalStyles.outerContainerWhite]}>
@@ -22,32 +63,114 @@ export default function BoatEditPage() {
                 <View style={[globalStyles.container, localStyles.containerGrey]}>
                     <View style={localStyles.nameContainer}>
                         <Text style={localStyles.nameLabel}>Name:</Text>
-                        <Text style={localStyles.valueLabel}>Pandora</Text>
+                        {isEditing.name ? (
+                            <TextInput
+                                style={localStyles.inputField}
+                                value={boat.name}
+                                onChangeText={(text) => handleChange('name', text)}
+                            />
+                        ) : (
+                            <View style={localStyles.editableRow}>
+                                <Text style={localStyles.valueLabel}>{boat.name}</Text>
+                                <Pressable onPress={() => toggleEdit('name')}>
+                                    <Icon name="edit" size={20} color={theme.darkColors.primary} />
+                                </Pressable>
+                            </View>
+                        )}
                     </View>
                     <Divider style={localStyles.divider} />
                     <View style={localStyles.nameContainer}>
                         <Text style={localStyles.nameLabel}>Hersteller:</Text>
-                        <Text style={localStyles.valueLabel}>Pandora</Text>
+                        {isEditing.manufacturer ? (
+                            <TextInput
+                                style={localStyles.inputField}
+                                value={boat.manufacturer}
+                                onChangeText={(text) => handleChange('manufacturer', text)}
+                            />
+                        ) : (
+                            <View style={localStyles.editableRow}>
+                                <Text style={localStyles.valueLabel}>{boat.manufacturer}</Text>
+                                <Pressable onPress={() => toggleEdit('manufacturer')}>
+                                    <Icon name="edit" size={20} color={theme.darkColors.primary} />
+                                </Pressable>
+                            </View>
+                        )}
                     </View>
                     <Divider style={localStyles.divider} />
                     <View style={localStyles.nameContainer}>
                         <Text style={localStyles.nameLabel}>Länge:</Text>
-                        <Text style={localStyles.valueLabel}>Pandora</Text>
+                        {isEditing.length ? (
+                            <TextInput
+                                style={localStyles.inputField}
+                                value={boat.length.toString()}
+                                onChangeText={(text) => handleChange('length', text)}
+                                keyboardType="numeric"
+                            />
+                        ) : (
+                            <View style={localStyles.editableRow}>
+                                <Text style={localStyles.valueLabel}>{boat.length}</Text>
+                                <Pressable onPress={() => toggleEdit('length')}>
+                                    <Icon name="edit" size={20} color={theme.darkColors.primary} />
+                                </Pressable>
+                            </View>
+                        )}
                     </View>
                     <Divider style={localStyles.divider} />
                     <View style={localStyles.nameContainer}>
                         <Text style={localStyles.nameLabel}>Breite:</Text>
-                        <Text style={localStyles.valueLabel}>Pandora</Text>
+                        {isEditing.width ? (
+                            <TextInput
+                                style={localStyles.inputField}
+                                value={boat.width.toString()}
+                                onChangeText={(text) => handleChange('width', text)}
+                                keyboardType="numeric"
+                            />
+                        ) : (
+                            <View style={localStyles.editableRow}>
+                                <Text style={localStyles.valueLabel}>{boat.width}</Text>
+                                <Pressable onPress={() => toggleEdit('width')}>
+                                    <Icon name="edit" size={20} color={theme.darkColors.primary} />
+                                </Pressable>
+                            </View>
+                        )}
                     </View>
                     <Divider style={localStyles.divider} />
                     <View style={localStyles.nameContainer}>
                         <Text style={localStyles.nameLabel}>Höhe:</Text>
-                        <Text style={localStyles.valueLabel}>Pandora</Text>
+                        {isEditing.height ? (
+                            <TextInput
+                                style={localStyles.inputField}
+                                value={boat.height.toString()}
+                                onChangeText={(text) => handleChange('height', text)}
+                                keyboardType="numeric"
+                            />
+                        ) : (
+                            <View style={localStyles.editableRow}>
+                                <Text style={localStyles.valueLabel}>{boat.height}</Text>
+                                <Pressable onPress={() => toggleEdit('height')}>
+                                    <Icon name="edit" size={20} color={theme.darkColors.primary} />
+                                </Pressable>
+                            </View>
+                        )}
                     </View>
                     <Divider style={localStyles.divider} />
                     <View style={localStyles.nameContainer}>
                         <Text style={localStyles.nameLabel}>Tiefgang:</Text>
-                        <Text style={localStyles.valueLabel}>Pandora</Text>
+                        {isEditing.depth ? (
+                            <TextInput
+                                style={localStyles.inputField}
+                                value={boat.depth.toString()}
+                                onChangeText={(text) => handleChange('depth', text)}
+                                keyboardType="numeric"
+                            />
+                        ) : (
+                            <View style={localStyles.editableRow}>
+                                <Text style={localStyles.valueLabel}>{boat.depth}</Text>
+                                <Pressable onPress={() => toggleEdit('depth')}>
+                                    <Icon name="edit" size={20} color={theme.darkColors.primary} />
+                                </Pressable>
+                            </View>
+                        )}
                     </View>
                 </View>
 
@@ -56,67 +179,100 @@ export default function BoatEditPage() {
                 </View>
 
                 <View style={[globalStyles.container, localStyles.containerGrey]}>
-                    <View style={localStyles.nameContainer}>
-                        <Text style={localStyles.nameLabel}>Foto hochgeladen:</Text>
-                        <Text style={localStyles.valueLabel}>pandora.jpg</Text>
-                    </View>
+                    <Image source={boat.image} style={localStyles.image} />
                     <Divider style={localStyles.divider} />
                     <View style={localStyles.nameContainer}>
-                        <Button style={globalStyles.SecondaryButton}  titleStyle={globalStyles.SecondaryButtonText}>
-                            Foto löschen
+                        <Button style={globalStyles.SecondaryButton} titleStyle={globalStyles.SecondaryButtonText}>
+                            <View style={localStyles.iconContainer}>
+                                <Icon name="delete" size={20} color={theme.darkColors.primary} />
+                                <Text style={localStyles.iconText}>Foto löschen</Text>
+                            </View>
                         </Button>
-                        <Button style={[globalStyles.SecondaryButton, localStyles.valueLabel]}  titleStyle={globalStyles.SecondaryButtonText}>
-                            Foto aufnehmen
+
+                        <Button style={[globalStyles.SecondaryButton]} titleStyle={globalStyles.SecondaryButtonText}>
+                            <View style={localStyles.iconContainer}>
+                                <Icon name="camera" size={20} color={theme.darkColors.primary} />
+                                <Text style={localStyles.iconText}>Foto aufnehmen</Text>
+                            </View>
                         </Button>
                     </View>
+
                     <View style={localStyles.nameContainer}>
-                        {/* Einzeiliger Kommentar */}
                         <Text style={localStyles.nameLabel}> </Text>
-                        <Button style={[globalStyles.SecondaryButton, localStyles.valueLabel]}  titleStyle={globalStyles.SecondaryButtonText}>
-                            Foto hochladen
+                        <Button style={[globalStyles.SecondaryButton]} titleStyle={globalStyles.SecondaryButtonText}>
+                            <View style={localStyles.iconContainer}>
+                                <Icon name="cloud-upload" size={20} color={theme.darkColors.primary} />
+                                <Text style={localStyles.iconText}>Foto hochladen</Text>
+                            </View>
                         </Button>
                     </View>
                 </View>
 
                 <View style={globalStyles.container}>
-                    <Button style={globalStyles.PrimaryButton}  titleStyle={globalStyles.PrimaryButtonText}>
-                        <Pressable style={globalStyles.PrimaryButton} onPress={() => router.push("BoatEdit")}>
-                            <Text style={globalStyles.PrimaryButtonText}>Boot speichern</Text>
-                        </Pressable>
+                    <Button style={globalStyles.PrimaryButton} titleStyle={globalStyles.PrimaryButtonText} onPress={handleSave}>
+                        Boot speichern
                     </Button>
                 </View>
-
-
 
             </View>
         </ScrollView>
     );
 }
 
-// Lokale Styles für die Komponente
 const localStyles = StyleSheet.create({
-        nameContainer: {
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-        },
-        nameLabel: {
-            flex: 1,
-        },
-        valueLabel: {
-            textAlign: 'right',
-        },
-        divider: {
-            width: '100%',
-            height: 1.5,
-            marginVertical: 16,
-            backgroundColor: theme.lightColors.primary,
-        },
-        containerGrey: {
-            backgroundColor: theme.lightColors.secondary,
-            borderRadius: 40,
-            margin: 20,
-            padding: 20,
-        },
-    }
-);
+    nameContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+    nameLabel: {
+        flex: 1,
+    },
+    valueLabel: {
+        textAlign: 'right',
+        fontSize: 16,
+        color: theme.darkColors.primary,
+    },
+    divider: {
+        width: '100%',
+        height: 1.5,
+        marginVertical: 16,
+        backgroundColor: theme.lightColors.primary,
+    },
+    containerGrey: {
+        backgroundColor: theme.lightColors.secondary,
+        borderRadius: 40,
+        margin: 20,
+        padding: 20,
+    },
+    inputField: {
+        flex: 1,
+        paddingHorizontal: 10,
+        paddingVertical: 8,
+        borderWidth: 1,
+        borderColor: theme.lightColors.primary,
+        borderRadius: 8,
+        fontSize: 16,
+        color: theme.darkColors.primary,
+    },
+    editableRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        flex: 1,
+    },
+    image: {
+        width: '100%',
+        height: 200,
+        borderRadius: 10,
+    },
+    iconContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    iconText: {
+        marginLeft: 5,
+        color: theme.darkColors.primary,
+    },
+
+});
