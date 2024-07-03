@@ -1,22 +1,33 @@
 import React from "react";
-import {View,Text, Dimensions} from "react-native";
+import { View, Text, Dimensions } from "react-native";
 import { Image } from '@rneui/themed';
 import { StyleSheet } from "react-native";
 import { globalStyles } from "../../../theme/global";
+import {useLocalSearchParams} from "expo-router";
+
 
 
 const { width } = Dimensions.get('window');
 
-export default function BridgeDetail(){
+export default function BridgeDetail() {
+
+    let item = useLocalSearchParams();
+
     return (
-        <View>
-            <Image 
-                source={require('../../../assets/images/alterheinbrueckekonstanz.jpg')} 
-                style={localStyles.image}>
-            </Image>
-            <View style={localStyles.overlayImage}></View>
-            <Text style={[globalStyles.headlineText, localStyles.overlayText]}>Mehr Infos zu dieser Brücke</Text>
-        </View>
+        <>
+            <View>
+                <Image
+                    source={require('../../../assets/images/alterheinbrueckekonstanz.jpg')}
+                    style={localStyles.image}>
+                </Image>
+
+                <View style={localStyles.overlayImage}></View>
+                <Text style={[globalStyles.headlineText, localStyles.overlayText]}>Mehr Infos zu dieser Brücke</Text>
+            </View>
+            <View>
+            <Text style={[globalStyles.headlineText]}>{item.bridgeName}</Text>
+            </View>
+        </>
     )
 }
 
@@ -28,8 +39,8 @@ const localStyles = StyleSheet.create({
         left: 20
     },
     image: {
-        width: width, 
-        height: 300, 
+        width: width,
+        height: 300,
         resizeMode: 'cover'
     },
     overlayImage: {
