@@ -189,7 +189,7 @@ export default function BoatEditPage() {
                             </View>
                         </Button>
 
-                        <Button style={[globalStyles.SecondaryButton, localStyles.valueLabel]} titleStyle={globalStyles.SecondaryButtonText}>
+                        <Button style={[globalStyles.SecondaryButton]} titleStyle={globalStyles.SecondaryButtonText}>
                             <View style={localStyles.iconContainer}>
                                 <Icon name="camera" size={20} color={theme.darkColors.primary} />
                                 <Text style={localStyles.iconText}>Foto aufnehmen</Text>
@@ -199,7 +199,7 @@ export default function BoatEditPage() {
 
                     <View style={localStyles.nameContainer}>
                         <Text style={localStyles.nameLabel}> </Text>
-                        <Button style={[globalStyles.SecondaryButton, localStyles.valueLabel]} titleStyle={globalStyles.SecondaryButtonText}>
+                        <Button style={[globalStyles.SecondaryButton]} titleStyle={globalStyles.SecondaryButtonText}>
                             <View style={localStyles.iconContainer}>
                                 <Icon name="cloud-upload" size={20} color={theme.darkColors.primary} />
                                 <Text style={localStyles.iconText}>Foto hochladen</Text>
