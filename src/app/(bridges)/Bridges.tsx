@@ -24,7 +24,7 @@ export default function BridgesPage() {
                                 title={item.bridgeName}
                                 location={item.location}
                                 image={item.image}
-                                />
+                            />
                         </Pressable>
                     )} />
                 </View>
@@ -36,7 +36,7 @@ export default function BridgesPage() {
 const localStyles = StyleSheet.create({
     containerGreen: {
         backgroundColor: theme.lightColors.primary,
-        height: 100,
+        height: 80,
         justifyContent: "flex-end",
     },
     containerWhite: {
