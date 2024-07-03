@@ -12,7 +12,7 @@ export default function HarborPage(){
         <View style={globalStyles.outerContainerGreen}>
             <View style={[globalStyles.container, globalStyles.roundedBackgroundContainerBottomGreen, localStyles.containerWhite]}>
                 <FlatList data={harbors} renderItem={({ item }) => (
-                    <Pressable onPress={() => router.push(item.harborName)}>
+                    <Pressable onPress={() => router.push("harbors/item.harborName")}>
                         <CustomCard
                             title={item.harborName}
                             location={item.location}

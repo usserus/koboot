@@ -1,7 +1,9 @@
-import {Stack} from "expo-router";
+import {Stack, router} from "expo-router";
 import React from "react";
 import theme from "../../../theme/theme";
 import { globalStyles } from "../../../theme/global";
+import { TouchableOpacity } from "react-native";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 export default function HarborLayout(){
     return (
@@ -13,8 +15,13 @@ export default function HarborLayout(){
                 headerTitleStyle: globalStyles.headlineText
             }}/>
             <Stack.Screen name="[harborId]" options={{
-                headerTitle: "Mehr Infos zu diesem Hafen",
-                headerShown: false
+                headerLeft: () => (
+                    <TouchableOpacity onPress={() => router.back()}>
+                        <Ionicons name="chevron-back-outline" size={24} color="white" />
+                    </TouchableOpacity>
+                ),
+                headerTitle: '',
+                headerTransparent: true
             }}/>
         </Stack>
     )

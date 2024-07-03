@@ -10,7 +10,6 @@ import { FlatList } from "react-native";
 
 export default function BridgesPage() {
     return (
-        <>
             <View style={globalStyles.outerContainerGreen}>
 
                 <View style={[globalStyles.container, localStyles.containerGreen]}>
@@ -19,7 +18,7 @@ export default function BridgesPage() {
 
                 <View style={[globalStyles.container, localStyles.containerWhite]}>
                     <FlatList data={bridges} renderItem={({ item }) => (
-                        <Pressable onPress={() => router.push(item.bridgeName)}>
+                        <Pressable onPress={() => router.push("bridges/item.bridgeName")}>
                             <CustomCard
                                 title={item.bridgeName}
                                 location={item.location}
@@ -29,7 +28,6 @@ export default function BridgesPage() {
                     )} />
                 </View>
             </View>
-        </>
     )
 }
 
