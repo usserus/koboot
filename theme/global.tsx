@@ -34,6 +34,15 @@ export const globalStyles = StyleSheet.create({
         color: theme.lightColors.white,
         fontSize: 16
     },
+    roundedBackgroundContainerBottomGreen: {
+        borderBottomEndRadius: 40,
+        borderBottomStartRadius: 40,
+        flex: 1
+    },
+    roundedBackgroundContainerGreen: {
+        borderRadius: borderRadius,
+        flex: 1
+    },
     outerContainerWhite: {
         backgroundColor: theme.lightColors.background,
         flex: 1,
@@ -43,5 +52,15 @@ export const globalStyles = StyleSheet.create({
         height: 100,
         justifyContent: "flex-end",
     },
+    containerGrey: {
+        borderRadius: borderRadius,
+        backgroundColor: theme.lightColors.secondary,
+        justifyContent: "center",
+        alignItems: "center",
+        padding: 20,
+        flexDirection: 'column',
+        flex: 1,
+        flexGrow: 1
+    }
 });
 
