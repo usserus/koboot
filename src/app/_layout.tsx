@@ -54,14 +54,14 @@ export default function TabsLayout() {
                         <FontAwesome name="map-signs" color={color} size={size} />
                     )
                 }}/>
-                <Tabs.Screen name="(harbors)" options={{
+                <Tabs.Screen name="harbors" options={{
                     headerShown:false,
                     title: "Häfen",
                     tabBarIcon: ({ color, size }) => (
                         <MaterialCommunityIcons name="lighthouse" color={color} size={size} />
                     )
                 }}/>
-                <Tabs.Screen name="(bridges)" options={{
+                <Tabs.Screen name="bridges" options={{
                     headerShown:false,
                     title: "Brücken",
                     tabBarIcon: ({ color, size }) => (
