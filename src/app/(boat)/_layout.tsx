@@ -5,12 +5,10 @@ export default function BoatLayout(){
     return (
         <Stack>
             <Stack.Screen name="Boat" options={{
-                headerTitle: "Boat",
-                title: "Boat"
+                headerShown: false
             }}/>
             <Stack.Screen name="BoatEdit" options={{
-                headerTitle: "BoatEdit",
-                title: "BoatEdit"
+                headerTitle: "Mein Boot"
             }}/>
         </Stack>
     )
