@@ -9,18 +9,6 @@ import { bridges } from "../../../data/bridges";
 import { FlatList } from "react-native";
 
 export default function BridgesPage() {
-
-    const imagePath = `../../../assets/images/`;
-
-    const renderItem = ({ item }) => (
-
-        <CustomCard
-            title={item.bridgeName}
-            location={item.location}
-            image={require('../../../assets/images/alterheinbrueckekonstanz.jpg')}
-        />
-    );
-
     return (
         <>
             <View style={globalStyles.outerContainerGreen}>
@@ -30,27 +18,15 @@ export default function BridgesPage() {
                 </View>
 
                 <View style={[globalStyles.container, localStyles.containerWhite]}>
-
-
-                    <FlatList
-                        data={bridges}
-                        renderItem={renderItem}
-                        keyExtractor={item => item.url} // Passe den KeyExtractor entsprechend deiner Datenstruktur an
-                    />
-
-
-                    <Pressable onPress={() => router.push("1")}>
-                        <Text>See Bridge Details</Text>
-                    </Pressable>
-
-
-                    {/* <CustomCard
-                        title="Brücke"
-                        location="Ort"
-                        image={require('../../../assets/images/alterheinbrueckekonstanz.jpg')} // Beispiel für lokales Bild im Projekt
-                    /> */}
-
-
+                    <FlatList data={bridges} renderItem={({ item }) => (
+                        <Pressable onPress={() => router.push(item.bridgeName)}>
+                            <CustomCard
+                                title={item.bridgeName}
+                                location={item.location}
+                                image={item.image}
+                                />
+                        </Pressable>
+                    )} />
                 </View>
             </View>
         </>
