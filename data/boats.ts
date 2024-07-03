@@ -1,4 +1,16 @@
-export const boats = [
+// boats.ts
+
+export interface Boat {
+    name: string;
+    manufacturer: string;
+    length: number;
+    width: number;
+    height: number;
+    depth: number;
+    image: any; // Typ hängt von Ihrem spezifischen Setup ab
+}
+
+export let boats: Boat[] = [
     {
         name: "pandora",
         manufacturer: "Lima",
@@ -9,3 +21,4 @@ export const boats = [
         image: require('../assets/images/fahrradbrueckekonstanz.jpg'),
     },
 ];
+
