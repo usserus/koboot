@@ -3,12 +3,14 @@ import { View, Text, Pressable, StyleSheet } from "react-native";
 import { router } from "expo-router";
 import { borderRadius, globalStyles } from "../../../theme/global";
 import theme from "../../../theme/theme";
+import { Button } from '@rneui/themed';
+
 
 
 export default function BoatPage() {
     return (
         <>
-            <View style={[globalStyles.outerContainerWhite, globalStyles.outerContainerWhite]}>
+            <View style={[globalStyles.outerContainerWhite]}>
 
                 <View style={[globalStyles.container, globalStyles.containerWhite]}>
                     <Text style={[globalStyles.headlineText, { color: theme.lightColors.primary }]}>Mein Boot</Text>
@@ -26,9 +28,12 @@ export default function BoatPage() {
                     <Text style={localStyles.centeredText}>Worauf wartest du noch? Füge jetzt dein Boot hinzu und erlebe die Möglichkeiten
                         die Koboot dir für deine Booterfahrung bietet!</Text>
 
-                        <Pressable style={globalStyles.button} onPress={() => router.push("BoatEdit")}>
-                            <Text style={globalStyles.buttonText}>Mein eigenes Boot hinzufügen</Text>
+                    <Button style={globalStyles.PrimaryButton}  titleStyle={globalStyles.PrimaryButtonText}>
+                        <Pressable style={globalStyles.PrimaryButton} onPress={() => router.push("BoatEdit")}>
+                            <Text style={globalStyles.PrimaryButtonText}>Mein eigenes Boot hinzufügen</Text>
                         </Pressable>
+                    </Button>
+
                 </View>
             </View>
         </>
