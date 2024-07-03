@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { globalStyles } from "../../theme/global";
 
 SplashScreen.preventAutoHideAsync();
 export default function TabsLayout() {
@@ -47,6 +48,8 @@ export default function TabsLayout() {
                 <Tabs.Screen name="index" options={{
                     headerTitle: "Dein Standort",
                     title: "Home",
+                    headerTintColor: theme.lightColors.primary,
+                    headerTitleStyle: globalStyles.headlineText,
                     tabBarIcon: ({ color, size }) => (
                         <FontAwesome name="map-signs" color={color} size={size} />
                     )
