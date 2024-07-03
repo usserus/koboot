@@ -13,13 +13,9 @@ export default function BridgesPage() {
         <>
             <View style={globalStyles.outerContainerGreen}>
 
-                <View style={[globalStyles.container, localStyles.containerGreen]}>
-                    <Text style={[globalStyles.headlineText, { color: 'white' }]}>Alle Brücken in deiner Nähe</Text>
-                </View>
-
                 <View style={[globalStyles.container, localStyles.containerWhite]}>
                     <FlatList data={bridges} renderItem={({ item }) => (
-                        <Pressable onPress={() => router.push(item.bridgeName)}>
+                        <Pressable onPress={() => router.push({ pathname: "bridges/item.harborName", params: item })}>
                             <CustomCard
                                 title={item.bridgeName}
                                 location={item.location}
