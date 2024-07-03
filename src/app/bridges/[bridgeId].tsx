@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Dimensions } from "react-native";
+import { View, Text, Dimensions, ScrollView } from "react-native";
 import { Image } from '@rneui/themed';
 import { StyleSheet } from "react-native";
 import { globalStyles } from "../../../theme/global";
@@ -52,7 +52,7 @@ export default function BridgeDetail() {
     }
 
     return (
-        <>
+        <ScrollView>
             <View>
                 <Image
                     source={image}
@@ -62,7 +62,12 @@ export default function BridgeDetail() {
                 <View style={localStyles.overlayImage}></View>
                 <Text style={[globalStyles.headlineText, localStyles.overlayText]}>Mehr Infos zu dieser Brücke</Text>
             </View>
-            <View style={globalStyles.container}>
+
+
+
+
+            <View style={globalStyles.outerContainerGreen}>
+            <View style={[globalStyles.container, globalStyles.roundedBackgroundContainerBottomGreen]}>
                 <Text style={[globalStyles.headlineText]}>{bridgeName}</Text>
                 <View style={localStyles.iconText}>
                     <Ionicons name="location-outline" size={18} color="black" />
@@ -111,9 +116,9 @@ export default function BridgeDetail() {
                     <Text style={[globalStyles.boldText]}>28.06.2024:</Text>
                 </View>
 
-
             </View>
-        </>
+            </View>
+        </ScrollView>
     )
 }
 

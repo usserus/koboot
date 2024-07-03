@@ -65,6 +65,12 @@ export const globalStyles = StyleSheet.create({
         backgroundColor: theme.lightColors.background,
         flex: 1,
     },
+    roundedContainerWhite: {
+        borderTopLeftRadius: borderRadius,
+        borderTopRightRadius: borderRadius,
+        backgroundColor: theme.lightColors.white,
+        flex: 1,
+    },
     containerWhite: {
         backgroundColor: theme.lightColors.background,
         height: 100,
