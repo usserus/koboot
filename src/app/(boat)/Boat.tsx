@@ -8,9 +8,9 @@ import theme from "../../../theme/theme";
 export default function BoatPage() {
     return (
         <>
-            <View style={[globalStyles.outerContainerWhite, localStyles.outerContainerWhite]}>
+            <View style={[globalStyles.outerContainerWhite, globalStyles.outerContainerWhite]}>
 
-                <View style={[globalStyles.container, localStyles.containerWhite]}>
+                <View style={[globalStyles.container, globalStyles.containerWhite]}>
                     <Text style={[globalStyles.headlineText, { color: theme.lightColors.primary }]}>Mein Boot</Text>
                 </View>
 
@@ -26,9 +26,9 @@ export default function BoatPage() {
                     <Text style={localStyles.centeredText}>Worauf wartest du noch? Füge jetzt dein Boot hinzu und erlebe die Möglichkeiten
                         die Koboot dir für deine Booterfahrung bietet!</Text>
 
-                    <Pressable style={globalStyles.button} onPress={() => router.push("BoatEdit")}>
-                        <Text style={globalStyles.buttonText}>Mein eigenes Boot hinzufügen</Text>
-                    </Pressable>
+                        <Pressable style={globalStyles.button} onPress={() => router.push("BoatEdit")}>
+                            <Text style={globalStyles.buttonText}>Mein eigenes Boot hinzufügen</Text>
+                        </Pressable>
                 </View>
             </View>
         </>
@@ -36,31 +36,21 @@ export default function BoatPage() {
 }
 
 const localStyles = StyleSheet.create({
-    outerContainerWhite: {
-        backgroundColor: theme.lightColors.background,
-        flex: 1,
-    },
-    containerWhite: {
-        backgroundColor: theme.lightColors.background,
-        height: 100,
-        justifyContent: "flex-end",
+    centeredText: {
+        textAlign: "center",
+        marginBottom: 40
     },
     containerGrey: {
-        borderTopLeftRadius: borderRadius,
-        borderTopRightRadius: borderRadius,
-        borderBottomLeftRadius: borderRadius,
-        borderBottomRightRadius: borderRadius,
+        borderRadius: borderRadius,
         backgroundColor: theme.lightColors.secondary,
-        flex: 1,
         marginBottom: 20,
         marginRight: 20,
         marginLeft: 20,
         justifyContent: "center",
         alignItems: "center",
         padding: 20,
+        flexDirection: 'column',
+        flex: 1,
+        flexGrow: 1
     },
-    centeredText: {
-        textAlign: "center",
-        marginBottom: 40
-    }
 });

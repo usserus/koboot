@@ -19,10 +19,6 @@ export const globalStyles = StyleSheet.create({
         flex: 1,
         backgroundColor: theme.lightColors.primary,
     },
-    outerContainerWhite: {
-        flex: 1,
-        backgroundColor: theme.lightColors.primary,
-    },
     card: {
 
     },
@@ -37,6 +33,15 @@ export const globalStyles = StyleSheet.create({
     buttonText: {
         color: theme.lightColors.white,
         fontSize: 16
-    }
+    },
+    outerContainerWhite: {
+        backgroundColor: theme.lightColors.background,
+        flex: 1,
+    },
+    containerWhite: {
+        backgroundColor: theme.lightColors.background,
+        height: 100,
+        justifyContent: "flex-end",
+    },
 });
 
