@@ -15,6 +15,7 @@ export default function TabsLayout() {
     const [loaded, error] = useFonts({
         'FireSans-Medium':require('../../assets/fonts/FiraSans-Medium.ttf'),
         'FireSans-Regular':require('../../assets/fonts/FiraSans-Regular.ttf'),
+        'FireSans-Bold':require('../../assets/fonts/FiraSans-Bold.ttf')
     });
 
     useEffect(() => {

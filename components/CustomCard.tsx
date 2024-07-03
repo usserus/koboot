@@ -3,7 +3,7 @@ import { Text, Image } from 'react-native';
 import { Divider } from '@rneui/themed';
 import theme from '../theme/theme';
 import { globalStyles } from '../theme/global';
-import { CardProps } from '../data/cardProps';
+import { CardProps } from '../models/cardProps';
 
 export default function CustomCard({ title, location, image }: CardProps) {
     return (

@@ -14,6 +14,10 @@ export const globalStyles = StyleSheet.create({
         fontSize: 12,
         fontFamily: "FireSans-Regular",
     },
+    boldText: {
+        fontSize: 12,
+        fontFamily: "FireSans-Bold",
+    },
     container: {
         padding: 20,
         backgroundColor: "#ffffff",

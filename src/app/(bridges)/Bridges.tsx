@@ -8,6 +8,7 @@ import CustomCard from "../../../components/CustomCard";
 import { bridges } from "../../../data/bridges";
 import { FlatList } from "react-native";
 
+
 export default function BridgesPage() {
     return (
         <>
@@ -17,7 +18,7 @@ export default function BridgesPage() {
 
                 <View style={[globalStyles.container, localStyles.containerWhite]}>
                     <FlatList data={bridges} renderItem={({ item }) => (
-                        <Pressable onPress={() => router.push(item.bridgeName)}>
+                        <Pressable onPress={() => router.push({pathname: item.bridgeName, params: item})}>
                             <CustomCard
                                 title={item.bridgeName}
                                 location={item.location}
