@@ -7,7 +7,9 @@ import { Divider, Button } from '@rneui/themed';
 import { boats } from "../../../data/boats";
 
 export default function BoatEditPage() {
+
     const [boat, setBoat] = useState(null);
+
     const [isEditing, setIsEditing] = useState({
         name: false,
         manufacturer: false,
@@ -18,7 +20,7 @@ export default function BoatEditPage() {
     });
 
     useEffect(() => {
-        // Load the boat data from the boats array
+        //load the boat data from the boats array - from boats.ts
         setBoat(boats[0]);
     }, []);
 
@@ -29,7 +31,7 @@ export default function BoatEditPage() {
     const handleSave = () => {
         // Update the boat in the boats array
         const updatedBoats = boats.map(b => (b.name === boat.name ? boat : b));
-        // Update the global boats array (you might need to implement a global state or use context for a real app)
+        // Update the global boats array
         boats.splice(0, boats.length, ...updatedBoats);
         setIsEditing({
             name: false,
@@ -45,13 +47,6 @@ export default function BoatEditPage() {
         setIsEditing(prev => ({ ...prev, [field]: !prev[field] }));
     };
 
-    if (!boat) {
-        return (
-            <View style={globalStyles.container}>
-                <Text>Loading...</Text>
-            </View>
-        );
-    }
 
     return (
         <ScrollView style={{ flex: 1 }}>
@@ -188,16 +183,27 @@ export default function BoatEditPage() {
                     <Divider style={localStyles.divider} />
                     <View style={localStyles.nameContainer}>
                         <Button style={globalStyles.SecondaryButton} titleStyle={globalStyles.SecondaryButtonText}>
-                            Foto löschen
+                            <View style={localStyles.iconContainer}>
+                                <Icon name="delete" size={20} color={theme.darkColors.primary} />
+                                <Text style={localStyles.iconText}>Foto löschen</Text>
+                            </View>
                         </Button>
+
                         <Button style={[globalStyles.SecondaryButton, localStyles.valueLabel]} titleStyle={globalStyles.SecondaryButtonText}>
-                            Foto aufnehmen
+                            <View style={localStyles.iconContainer}>
+                                <Icon name="camera" size={20} color={theme.darkColors.primary} />
+                                <Text style={localStyles.iconText}>Foto aufnehmen</Text>
+                            </View>
                         </Button>
                     </View>
+
                     <View style={localStyles.nameContainer}>
-                        <Text style={localStyles.nameLabel}></Text>
+                        <Text style={localStyles.nameLabel}> </Text>
                         <Button style={[globalStyles.SecondaryButton, localStyles.valueLabel]} titleStyle={globalStyles.SecondaryButtonText}>
-                            Foto hochladen
+                            <View style={localStyles.iconContainer}>
+                                <Icon name="cloud-upload" size={20} color={theme.darkColors.primary} />
+                                <Text style={localStyles.iconText}>Foto hochladen</Text>
+                            </View>
                         </Button>
                     </View>
                 </View>
@@ -260,4 +266,13 @@ const localStyles = StyleSheet.create({
         height: 200,
         borderRadius: 10,
     },
+    iconContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    iconText: {
+        marginLeft: 5,
+        color: theme.darkColors.primary,
+    },
+
 });
