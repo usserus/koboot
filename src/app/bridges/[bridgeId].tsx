@@ -10,6 +10,7 @@ import theme from "../../../theme/theme";
 import { useState, useEffect } from "react";
 import { fetchCurrentWaterLevel } from "../../../apis/currentWaterLevel-api";
 import { bridge } from "../../../models/bridge";
+import { LinearGradient } from "expo-linear-gradient";
 
 
 const { width } = Dimensions.get('window');
@@ -56,100 +57,74 @@ export default function BridgeDetail() {
             <View>
                 <Image
                     source={image}
-                    style={localStyles.image}>
+                    style={globalStyles.image}>
                 </Image>
-                <View style={localStyles.overlayImage}></View>
-                <View style={localStyles.overlayContainer}> 
-                    <Text style={[globalStyles.headlineText, localStyles.overlayText]}>Mehr Infos zu dieser Brücke</Text>
-                    <View style={localStyles.overlay}></View>
-                </View>
+                <View style={globalStyles.overlayImage}></View>
+                <Text style={[globalStyles.headlineText, globalStyles.overlayText]}>Mehr Infos zu dieser Brücke</Text>
             </View>
 
 
 
-            <View style={globalStyles.outerContainerGreen}>
-                <View style={[globalStyles.container, globalStyles.roundedBackgroundContainerBottomGreen]}>
-                    <Text style={[globalStyles.headlineText]}>{bridgeName}</Text>
-                    <View style={localStyles.iconText}>
-                        <Ionicons name="location-outline" size={18} color="black" />
-                        <Text style={[globalStyles.text]}>
-                            {item.location}
-                        </Text>
-                    </View>
-                    <Divider style={localStyles.divider} />
+            <LinearGradient
+                colors={['transparent', theme.lightColors.primary]}
+                style={globalStyles.gradientContainer}
+            >
+                <View style={[globalStyles.contentContainer]}>
+                    <View style={[globalStyles.container, globalStyles.roundedBackgroundContainerGreen]}>
+                        <Text style={[globalStyles.headlineText]}>{bridgeName}</Text>
+                        <View style={localStyles.iconText}>
+                            <Ionicons name="location-outline" size={18} color="black" />
+                            <Text style={[globalStyles.text]}>
+                                {item.location}
+                            </Text>
+                        </View>
+                        <Divider style={localStyles.divider} />
 
 
-                    <Chip
-                        title="Durchfahrt möglich"
-                        containerStyle={{ marginVertical: 15 }}
-                        color="green"
-                    />
-                    <Divider style={localStyles.divider} />
-
-                    <Text style={[globalStyles.headlineText]}>Durchfahrt</Text>
-
-                    {bridgeName === "Alter Rheinbrücke Konstanz" && (
-                        <ButtonGroup
-                            buttons={['links', 'mitte', 'rechts']}
-                            selectedIndex={selectedIndex}
-                            onPress={(value) => {
-                                setSelectedIndex(value);
-                            }}
-                            containerStyle={{ marginBottom: 20, marginTop: 20 }}
+                        <Chip
+                            title="Durchfahrt möglich"
+                            containerStyle={{ marginVertical: 15 }}
+                            color="green"
                         />
-                    )}
+                        <Divider style={localStyles.divider} />
 
-                    <View style={localStyles.dataContainer}>
-                        <Text style={[globalStyles.text]}>Zeitpunkt der Wasserpegel-Messung:</Text>
-                        <Text style={[globalStyles.boldText]}>{data.measuringTime}</Text>
-                    </View>
-                    <View style={localStyles.dataContainer}>
-                        <Text style={[globalStyles.text]}>Wasserpegel:</Text>
-                        <Text style={[globalStyles.boldText]}>{data.waterLevel}</Text>
-                    </View>
-                    <View style={localStyles.dataContainer}>
-                        <Text style={[globalStyles.text]}>Durchfahrshöhe:</Text>
-                        <Text style={[globalStyles.boldText]}>{data.clearanceHeight}</Text>
-                    </View>
-                    <View style={localStyles.dataContainer}>
-                        <Text style={[globalStyles.text]}>Abstand vom Boot zur Brücke:</Text>
-                        <Text style={[globalStyles.boldText]}>28.06.2024:</Text>
-                    </View>
+                        <Text style={[globalStyles.headlineText]}>Durchfahrt</Text>
 
+                        {bridgeName === "Alter Rheinbrücke Konstanz" && (
+                            <ButtonGroup
+                                buttons={['links', 'mitte', 'rechts']}
+                                selectedIndex={selectedIndex}
+                                onPress={(value) => {
+                                    setSelectedIndex(value);
+                                }}
+                                containerStyle={{ marginBottom: 20, marginTop: 20 }}
+                            />
+                        )}
+
+                        <View style={localStyles.dataContainer}>
+                            <Text style={[globalStyles.text]}>Zeitpunkt der Wasserpegel-Messung:</Text>
+                            <Text style={[globalStyles.boldText]}>{data.measuringTime}</Text>
+                        </View>
+                        <View style={localStyles.dataContainer}>
+                            <Text style={[globalStyles.text]}>Wasserpegel:</Text>
+                            <Text style={[globalStyles.boldText]}>{data.waterLevel}</Text>
+                        </View>
+                        <View style={localStyles.dataContainer}>
+                            <Text style={[globalStyles.text]}>Durchfahrshöhe:</Text>
+                            <Text style={[globalStyles.boldText]}>{data.clearanceHeight}</Text>
+                        </View>
+                        <View style={localStyles.dataContainer}>
+                            <Text style={[globalStyles.text]}>Abstand vom Boot zur Brücke:</Text>
+                            <Text style={[globalStyles.boldText]}>28.06.2024:</Text>
+                        </View>
+                    </View>
                 </View>
-            </View>
+            </LinearGradient>
         </ScrollView>
     )
 }
 
 const localStyles = StyleSheet.create({
-    overlayText: {
-        color: 'white',
-        position: 'absolute',
-        bottom: 50,
-        left: 20
-    },
-    overlayContainer: {
-        position: 'absolute',
-        bottom: 0,
-        width: '100%',
-    },
-    overlay: {
-        backgroundColor: 'white',
-        padding: 20,
-        borderTopLeftRadius: 40,
-        borderTopRightRadius: 40,
-    },
-    image: {
-        width: width,
-        height: 300,
-        resizeMode: 'cover'
-    },
-    overlayImage: {
-        //setzt position auf absolute und füllt es aus
-        ...StyleSheet.absoluteFillObject,
-        backgroundColor: 'rgba(0, 0, 0, 0.2)'
-    },
     iconText: {
         flexDirection: 'row',
         alignItems: 'center',
