@@ -13,7 +13,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 
 export default function HarborDetail(){
     const item = useLocalSearchParams() as unknown as harbor;
-    const { harborName, location, image, description, openingHours } = item; //TODO: warum variablen unused???
+    const { harborName, location, image, description, openingHours } = item;
 
     return (
         <ScrollView>

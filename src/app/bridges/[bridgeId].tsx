@@ -1,10 +1,10 @@
 import React from "react";
-import { View, Text, Dimensions, ScrollView } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import { Image } from '@rneui/themed';
 import { StyleSheet } from "react-native";
 import { globalStyles } from "../../../theme/global";
 import { useLocalSearchParams } from "expo-router";
-import { Divider, Chip, ButtonGroup } from '@rneui/themed';
+import { Divider, ButtonGroup } from '@rneui/themed';
 import theme from "../../../theme/theme";
 import { useState, useEffect } from "react";
 import { fetchCurrentWaterLevel } from "../../../apis/currentWaterLevel-api";
