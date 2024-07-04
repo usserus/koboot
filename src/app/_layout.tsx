@@ -41,7 +41,9 @@ export default function TabsLayout() {
                     backgroundColor: theme.lightColors.primary,
                     height: 80,
                     paddingTop: 10,
-                    paddingBottom: 20
+                    paddingBottom: 20,
+                    borderTopWidth: 0, // Linie entfernen (iOS)
+                    elevation: 0, // Linie entfernen (Android)
                 },
                 tabBarActiveTintColor: '#ffffff',
                 tabBarInactiveTintColor: '#C1C1C1'
