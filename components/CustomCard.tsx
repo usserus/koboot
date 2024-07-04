@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     card: {
         overflow: "hidden",
         borderRadius: 26,
-        height: 110,
+        height: 140,
     },
     cardShadow: {
         borderRadius: 26,
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     },
     cardImage: {
         flex: 1,
-        height: 110,
+        height: 140,
         resizeMode: "cover",
         borderRadius: 26,
     },

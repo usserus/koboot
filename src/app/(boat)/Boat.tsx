@@ -9,31 +9,28 @@ import { Button } from '@rneui/themed';
 
 export default function BoatPage() {
     return (
-        <>
+        <View style={[globalStyles.outerContainerGreen]}>
+            <View style={[globalStyles.container, globalStyles.roundedBackgroundContainerBottomGreen]}>
+                <View style={[globalStyles.container, globalStyles.containerGrey]}>
 
-            <View style={[globalStyles.outerContainerGreen]}>
-                <View style={[globalStyles.container, globalStyles.roundedBackgroundContainerBottomGreen]}>
-                    <View style={[globalStyles.container, globalStyles.containerGrey]}>
+                    <Text style={[globalStyles.headlineText, localStyles.centeredText]}>Du hast noch kein Boot erstellt.</Text>
 
-                        <Text style={[globalStyles.headlineText, localStyles.centeredText]}>Du hast noch kein Boot erstellt.</Text>
+                    <Text style={localStyles.centeredText}>Füge dein Boot hinzu, damit du deinen aktuellen Standort verfolgen kannst,
+                        deine Routen bis zur nächsten Brücke berechnen kannst und den aktuellen Wasserstand
+                        bezüglich Brückendurchfahrt checken kannst. Mache deinen Bootstrip am Bodensee so
+                        angenehm wie möglich.</Text>
 
-                        <Text style={localStyles.centeredText}>Füge dein Boot hinzu, damit du deinen aktuellen Standort verfolgen kannst,
-                            deine Routen bis zur nächsten Brücke berechnen kannst und den aktuellen Wasserstand
-                            bezüglich Brückendurchfahrt checken kannst. Mache deinen Bootstrip am Bodensee so
-                            angenehm wie möglich.</Text>
+                    <Text style={localStyles.centeredText}>Worauf wartest du noch? Füge jetzt dein Boot hinzu und erlebe die Möglichkeiten
+                        die Koboot dir für deine Booterfahrung bietet!</Text>
 
-                        <Text style={localStyles.centeredText}>Worauf wartest du noch? Füge jetzt dein Boot hinzu und erlebe die Möglichkeiten
-                            die Koboot dir für deine Booterfahrung bietet!</Text>
-
-                        <Button style={globalStyles.PrimaryButton}  titleStyle={globalStyles.PrimaryButtonText}>
-                            <Pressable style={globalStyles.PrimaryButton} onPress={() => router.push("BoatEdit")}>
-                                <Text style={globalStyles.PrimaryButtonText}>Mein eigenes Boot hinzufügen</Text>
-                            </Pressable>
-                        </Button>
-                    </View>
+                    <Button style={globalStyles.PrimaryButton}  titleStyle={globalStyles.PrimaryButtonText}>
+                        <Pressable style={globalStyles.PrimaryButton} onPress={() => router.push("BoatEdit")}>
+                            <Text style={globalStyles.PrimaryButtonText}>Mein eigenes Boot hinzufügen</Text>
+                        </Pressable>
+                    </Button>
                 </View>
             </View>
-        </>
+        </View>
     );
 }
 

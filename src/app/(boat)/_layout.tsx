@@ -8,7 +8,7 @@ export default function BoatLayout(){
                 headerShown: false
             }}/>
             <Stack.Screen name="BoatEdit" options={{
-                headerTitle: "Mein Boot"
+                headerShown: false
             }}/>
         </Stack>
     )

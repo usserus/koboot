@@ -1,5 +1,3 @@
-// boats.ts
-
 export interface Boat {
     name: string;
     manufacturer: string;
