@@ -66,7 +66,7 @@ export default function BridgeDetail() {
                 colors={['transparent', theme.lightColors.primary]}
                 style={globalStyles.gradientContainer}
             >
-                <View style={[globalStyles.contentContainer]}>
+                <View style={[globalStyles.contentContainer, globalStyles.noOverlay]}>
                     <View style={[globalStyles.container, globalStyles.roundedBackgroundContainerGreen]}>
                         <DetailHeader
                             name={item.bridgeName}

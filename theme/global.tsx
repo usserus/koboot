@@ -130,5 +130,9 @@ export const globalStyles = StyleSheet.create({
     gradientContainer: {
         flex: 1,
     },
+    noOverlay:{
+        marginTop: 0,
+        flex: 1,
+    }
 });
 
