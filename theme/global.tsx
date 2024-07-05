@@ -130,5 +130,8 @@ export const globalStyles = StyleSheet.create({
     gradientContainer: {
         flex: 1,
     },
+    imagegap: {
+        marginTop: 0,
+    },
 });
 

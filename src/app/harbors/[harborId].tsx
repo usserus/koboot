@@ -30,7 +30,7 @@ export default function HarborDetail(){
                 colors={['transparent', theme.lightColors.primary]}
                 style={globalStyles.gradientContainer}
             >
-                <View style={[globalStyles.contentContainer]}>
+                <View style={[globalStyles.contentContainer, globalStyles.imagegap]}>
                     <View style={[globalStyles.container, globalStyles.roundedBackgroundContainerGreen]}>
                         <DetailHeader
                             name={item.harborName}
@@ -63,5 +63,5 @@ const localStyles = StyleSheet.create({
         alignItems: 'center',
         gap: 3,
         marginLeft: 10,
-    }
+    },
 });

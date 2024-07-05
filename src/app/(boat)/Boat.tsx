@@ -30,8 +30,8 @@ export default function BoatPage() {
                     </Button>
 
                     <Button style={globalStyles.PrimaryButton}  titleStyle={globalStyles.PrimaryButtonText}>
-                        <Pressable style={globalStyles.PrimaryButton} onPress={() => router.push("BoatEdit")}>
-                            <Text style={globalStyles.PrimaryButtonText}>Mein eigenes Boot hinzufügen</Text>
+                        <Pressable style={globalStyles.PrimaryButton} onPress={() => router.push("MyBoat")}>
+                            <Text style={globalStyles.PrimaryButtonText}>Mein Boot ansehen</Text>
                         </Pressable>
                     </Button>
                 </View>
