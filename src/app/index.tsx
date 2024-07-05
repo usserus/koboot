@@ -57,7 +57,7 @@ export default function HomePage(){
                             ))}
                         </MapView>
                     ) : (
-                        <Text>{errorMsg ? errorMsg : "Loading map..."}</Text>
+                        <Text>{errorMsg ? errorMsg : "Karte wird geladen..."}</Text>
                     )}
                 </View>
             </View>
