@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { View, Text, StyleSheet, TextInput, TouchableWithoutFeedback, Keyboard } from "react-native";
 import { globalStyles } from "../../../theme/global";
 import theme from "../../../theme/theme";
@@ -7,9 +7,12 @@ import { useNavigation } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
+
 export default function BoatEditPage() {
 
     const navigation = useNavigation();
+    const [hasPermission, setHasPermission] = useState(null);
+    const [cameraRef, setCameraRef] = useState(null);
 
     const [boatName, setBoatName] = useState('');
     const [boatManufacturer, setBoatManufacturer] = useState('');
@@ -17,6 +20,8 @@ export default function BoatEditPage() {
     const [boatWidth, setBoatWidth] = useState('');
     const [boatHeight, setBoatHeight] = useState('');
     const [boatDraft, setBoatDraft] = useState('');
+
+
 
     useEffect(() => {
         const loadBoatData = async () => {
@@ -40,6 +45,13 @@ export default function BoatEditPage() {
 
 
     const handleSave = async () => {
+        // Überprüfen, ob alle Felder ausgefüllt sind
+        if (!boatName || !boatManufacturer || !boatLength || !boatWidth || !boatHeight || !boatDraft) {
+            alert('Bitte fülle alle Felder aus.');
+            return;
+        }
+
+        // Wenn alle Felder ausgefüllt sind, speichern Sie die Daten
         const boatData = {
             boatName,
             boatManufacturer,
@@ -56,6 +68,7 @@ export default function BoatEditPage() {
         }
     };
 
+
     const handleDelete = async () => {
         try {
             await AsyncStorage.removeItem('boatData');
@@ -64,7 +77,6 @@ export default function BoatEditPage() {
             console.error("Failed to delete boat data", error);
         }
     };
-
 
     const handleNumberChange = (setter) => (value) => {
         if (value === '' || /^\d*\.?\d*$/.test(value)) {
@@ -146,6 +158,15 @@ export default function BoatEditPage() {
                             />
                         </View>
                     </View>
+
+
+                    {/*<Text style={globalStyles.headlineText}>Foto:</Text>
+                    <View style={[globalStyles.container, localStyles.containerGrey]}>
+                        <View style={localStyles.nameContainer}>
+                            <Text style={localStyles.nameLabel}>Foto machen:</Text>
+                        </View>
+                    </View>*/}
+
                     <View style={globalStyles.container}>
                         <Button style={globalStyles.PrimaryButton} titleStyle={globalStyles.PrimaryButtonText} onPress={handleSave}>
                             Boot speichern
@@ -157,7 +178,7 @@ export default function BoatEditPage() {
                          </Button>
                     </View>
                 </View>
-            </View>       
+            </View>
         </TouchableWithoutFeedback>
     );
 }

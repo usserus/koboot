@@ -17,7 +17,7 @@ export default function HarborDetail(){
     const { harborName, location, image, description, openingHours } = item;
 
     return (
-        <ScrollView>
+        <ScrollView style={globalStyles.outerContainerGreen}>
             <ImageHeader
                 image={image}
                 headlineText={"Mehr Infos zu diesem Hafen"}>

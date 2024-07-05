@@ -52,7 +52,7 @@ export default function BridgeDetail() {
     }
 
     return (
-        <ScrollView>
+        <ScrollView style={globalStyles.outerContainerGreen}>
             <ImageHeader
                 image={image}
                 headlineText={"Mehr Infos zu dieser Brücke"}>
