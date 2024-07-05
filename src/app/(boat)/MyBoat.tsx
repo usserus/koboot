@@ -18,8 +18,8 @@ export default function HarborDetail(){
     return (
         <ScrollView>
             <View>
-                <Image 
-                    source={image} 
+                <Image
+                    source={image}
                     style={globalStyles.image}>
                 </Image>
                 <View style={globalStyles.overlayImage}></View>

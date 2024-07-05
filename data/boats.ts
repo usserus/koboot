@@ -10,7 +10,7 @@ export interface Boat {
 
 export let boats: Boat[] = [
     {
-        name: "pandora",
+        name: "pandoraaa",
         manufacturer: "Lima",
         length: 3,
         width: 6.5,

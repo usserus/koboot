@@ -1,19 +1,16 @@
 import React from "react";
-import { View, Text, Dimensions, ScrollView } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import { Image } from '@rneui/themed';
 import { StyleSheet } from "react-native";
 import { globalStyles } from "../../../theme/global";
 import { useLocalSearchParams } from "expo-router";
-import Ionicons from "react-native-vector-icons/Ionicons";
-import { Divider, Chip, ButtonGroup } from '@rneui/themed';
+import { Divider, ButtonGroup } from '@rneui/themed';
 import theme from "../../../theme/theme";
 import { useState, useEffect } from "react";
 import { fetchCurrentWaterLevel } from "../../../apis/currentWaterLevel-api";
 import { bridge } from "../../../models/bridge";
 import { LinearGradient } from "expo-linear-gradient";
-
-
-const { width } = Dimensions.get('window');
+import DetailHeader from "../../../components/DetailHeader";
 
 
 export default function BridgeDetail() {
@@ -71,22 +68,13 @@ export default function BridgeDetail() {
             >
                 <View style={[globalStyles.contentContainer]}>
                     <View style={[globalStyles.container, globalStyles.roundedBackgroundContainerGreen]}>
-                        <Text style={[globalStyles.headlineText]}>{bridgeName}</Text>
-                        <View style={localStyles.iconText}>
-                            <Ionicons name="location-outline" size={18} color="black" />
-                            <Text style={[globalStyles.text]}>
-                                {item.location}
-                            </Text>
-                        </View>
-                        <Divider style={localStyles.divider} />
-
-
-                        <Chip
-                            title="Durchfahrt möglich"
-                            containerStyle={{ marginVertical: 15 }}
-                            color="green"
-                        />
-                        <Divider style={localStyles.divider} />
+                        <DetailHeader
+                            name={item.bridgeName}
+                            location={item.location}
+                            icon={"location-outline"}>
+                        </DetailHeader>
+                        <Text style={localStyles.passageText}>DURCHFAHRT MÖGLICH</Text>
+                        <Divider style={globalStyles.divider} />
 
                         <Text style={[globalStyles.headlineText]}>Durchfahrt</Text>
 
@@ -125,20 +113,14 @@ export default function BridgeDetail() {
 }
 
 const localStyles = StyleSheet.create({
-    iconText: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 3,
-        marginLeft: 10,
-    },
-    divider: {
-        marginVertical: 6,
-        height: 1.2,
-        backgroundColor: theme.lightColors.primary,
-        marginTop: 10,
-        marginBottom: 10
-    },
     dataContainer: {
         marginVertical: 10,
+    },
+    passageText: {
+        textAlign: 'center',
+        color: theme.lightColors.primary,
+        fontWeight: 'bold',
+        marginTop: 10,
+        marginBottom: 10
     }
 });

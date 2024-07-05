@@ -71,6 +71,12 @@ export default function BoatPage() {
                             <Text style={globalStyles.PrimaryButtonText}>Mein eigenes Boot hinzufügen</Text>
                         </Pressable>
                     </Button>
+
+                    <Button style={globalStyles.PrimaryButton}  titleStyle={globalStyles.PrimaryButtonText}>
+                        <Pressable style={globalStyles.PrimaryButton} onPress={() => router.push("BoatEdit")}>
+                            <Text style={globalStyles.PrimaryButtonText}>Mein eigenes Boot hinzufügen</Text>
+                        </Pressable>
+                    </Button>
                 </View>
             </View>
         </View>

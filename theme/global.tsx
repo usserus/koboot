@@ -19,6 +19,13 @@ export const globalStyles = StyleSheet.create({
         fontSize: 12,
         fontFamily: "FireSans-Bold",
     },
+    divider: {
+        marginVertical: 6,
+        height: 1.2,
+        backgroundColor: theme.lightColors.primary,
+        marginTop: 10,
+        marginBottom: 10
+    },
 
 
     

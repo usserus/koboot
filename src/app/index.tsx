@@ -5,9 +5,6 @@ import * as Location from 'expo-location';
 import { StyleSheet } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 
- //Breite des Handys
- const { width } = Dimensions.get('window');
-
 export default function HomePage(){
     //states initialisieren
     const [location, setLocation] = useState(null);
