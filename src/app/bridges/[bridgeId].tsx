@@ -66,7 +66,7 @@ export default function BridgeDetail() {
                 colors={['transparent', theme.lightColors.primary]}
                 style={globalStyles.gradientContainer}
             >
-                <View style={[globalStyles.contentContainer, globalStyles.imagegap]}>
+                <View style={[globalStyles.contentContainer]}>
                     <View style={[globalStyles.container, globalStyles.roundedBackgroundContainerGreen]}>
                         <DetailHeader
                             name={item.bridgeName}
@@ -122,6 +122,5 @@ const localStyles = StyleSheet.create({
         fontWeight: 'bold',
         marginTop: 10,
         marginBottom: 10
-    },
-
+    }
 });
