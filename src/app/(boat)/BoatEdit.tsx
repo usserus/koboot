@@ -170,6 +170,7 @@ const localStyles = StyleSheet.create({
     },
     nameLabel: {
         flex: 1,
+        fontWeight: 'bold',
     },
     valueLabel: {
         textAlign: 'right',

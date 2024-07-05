@@ -9,6 +9,7 @@ import { useLocalSearchParams } from "expo-router";
 import { harbor } from "../../../models/harbor";
 import DetailHeader from "../../../components/DetailHeader";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import ImageHeader from "../../../components/ImageHeader";
 
 
 export default function HarborDetail(){
@@ -17,14 +18,10 @@ export default function HarborDetail(){
 
     return (
         <ScrollView>
-            <View>
-                <Image 
-                    source={image} 
-                    style={globalStyles.image}>
-                </Image>
-                <View style={globalStyles.overlayImage}></View>
-                <Text style={[globalStyles.headlineText, globalStyles.overlayText]}>Mehr Infos zu diesem Hafen</Text>
-            </View>
+            <ImageHeader
+                image={image}
+                headlineText={"Mehr Infos zu diesem Hafen"}>
+            </ImageHeader>
 
             <LinearGradient
                 colors={['transparent', theme.lightColors.primary]}

@@ -21,13 +21,11 @@ export const globalStyles = StyleSheet.create({
     },
     divider: {
         marginVertical: 6,
-        height: 1.2,
+        height: 1.5,
         backgroundColor: theme.lightColors.primary,
-        marginTop: 10,
-        marginBottom: 10
+        marginTop: 20,
+        marginBottom: 20
     },
-
-
     
 
     // Buttons
@@ -117,7 +115,7 @@ export const globalStyles = StyleSheet.create({
     image: {
         width: width, 
         height: 300, 
-        resizeMode: 'cover'
+        resizeMode: "cover"
     },
     overlayImage: {
         //setzt position auf absolute und füllt es aus
@@ -134,5 +132,6 @@ export const globalStyles = StyleSheet.create({
         marginTop: 0,
         flex: 1,
     }
+
 });
 
