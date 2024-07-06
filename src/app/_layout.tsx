@@ -72,7 +72,7 @@ export default function TabsLayout() {
                     )
                 }}/>
                 <Tabs.Screen name="(boat)" options={{
-                    headerTitle: "Mein Boot",
+                    headerShown:false,
                     title: "Boot",
                     headerTintColor: theme.lightColors.primary,
                     tabBarIcon: ({ color, size }) => (

@@ -1,18 +1,17 @@
 import React from "react";
 import {View, Text, Pressable, StyleSheet, ScrollView} from "react-native";
 import { router } from "expo-router";
-import { borderRadius, globalStyles } from "../../../theme/global";
+import { globalStyles } from "../../../theme/global";
 import theme from "../../../theme/theme";
 import {Button, Divider} from '@rneui/themed';
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useFocusEffect } from "expo-router";
-import { useCallback } from "react";
 import ImageHeader from "../../../components/ImageHeader";
-import image from "../../../assets/images/alterheinbrueckekonstanz.jpg";
 import DetailHeader from "../../../components/DetailHeader";
+import { LinearGradient } from "expo-linear-gradient";
 
-
+const localImage = require('../../../assets/images/alterheinbrueckekonstanz.jpg');
 
 export default function BoatPage() {
 
@@ -34,64 +33,70 @@ export default function BoatPage() {
 
     if (boatData) {
         return (
-            <View style={[globalStyles.outerContainerGreen]}>
+            <ScrollView style={globalStyles.outerContainerGreen}>
                 <ImageHeader
-                    image={image}
+                    image={localImage}
                     headlineText={"Mein Boot"}>
                 </ImageHeader>
 
-                <ScrollView style={localStyles.scrollViewContent}>
-                    <View style={[globalStyles.container, globalStyles.roundedBackgroundContainerGreen]}>
-                    <View style={[globalStyles.container]}>
-                        <DetailHeader
-                            name={boatData.boatName}
-                            location={boatData.boatManufacturer}
-                            >
-                        </DetailHeader>
 
-                        <Text style={globalStyles.headlineText}>Maße</Text>
+                <LinearGradient
+                    colors={['transparent', theme.lightColors.primary]}
+                    style={globalStyles.gradientContainer}
+                >
+                    <View style={[globalStyles.container, globalStyles.roundedBackgroundContainerGreen, globalStyles.noOverlay]}>
+                        <View>
+                            <DetailHeader
+                                name={boatData.boatName}
+                                location={boatData.boatManufacturer}
+                                >
+                            </DetailHeader>
 
-                        <View style={localStyles.measurementContainer}>
-                            <View style={localStyles.measurementRow}>
-                                <View style={localStyles.measurement}>
-                                    <Text style={localStyles.labelText}>Länge</Text>
-                                    <Text style={localStyles.valueText}>{boatData.boatLength} m</Text>
+
+                            <Text style={globalStyles.headlineText}>Maße</Text>
+
+                            <View style={localStyles.measurementContainer}>
+                                <View style={localStyles.measurementRow}>
+                                    <View style={localStyles.measurement}>
+                                        <Text style={localStyles.labelText}>Länge</Text>
+                                        <Text style={localStyles.valueText}>{boatData.boatLength} m</Text>
+                                    </View>
+                                    <View style={localStyles.measurement}>
+                                        <Text style={localStyles.labelText}>Breite</Text>
+                                        <Text style={localStyles.valueText}>{boatData.boatWidth} m</Text>
+                                    </View>
                                 </View>
-                                <View style={localStyles.measurement}>
-                                    <Text style={localStyles.labelText}>Breite</Text>
-                                    <Text style={localStyles.valueText}>{boatData.boatWidth} m</Text>
-                                </View>
+                                <View style={localStyles.measurementRow}>
+                                    <View style={localStyles.measurement}>
+                                        <Text style={localStyles.labelText}>Höhe</Text>
+                                        <Text style={localStyles.valueText}>{boatData.boatHeight} m</Text>
+                                    </View>
+                                    <View style={localStyles.measurement}>
+                                        <Text style={localStyles.labelText}>Tiefe</Text>
+                                        <Text style={localStyles.valueText}>{boatData.boatDraft} m</Text>
+                                    </View>
                             </View>
-                            <View style={localStyles.measurementRow}>
-                                <View style={localStyles.measurement}>
-                                    <Text style={localStyles.labelText}>Höhe</Text>
-                                    <Text style={localStyles.valueText}>{boatData.boatHeight} m</Text>
-                                </View>
-                                <View style={localStyles.measurement}>
-                                    <Text style={localStyles.labelText}>Tiefe</Text>
-                                    <Text style={localStyles.valueText}>{boatData.boatDraft} m</Text>
-                                </View>
-                        </View>
-                        </View>
+                            </View>
 
-                        <Divider style={globalStyles.divider} />
+                            <Divider style={globalStyles.divider} />
 
-                        <Text style={localStyles.centeredText}>Du möchtest deine Bootdaten ändern?</Text>
-                        <Button style={globalStyles.PrimaryButton} titleStyle={globalStyles.PrimaryButtonText}>
-                            <Pressable style={globalStyles.PrimaryButton} onPress={() => router.push("BoatEdit")}>
-                                <Text style={globalStyles.PrimaryButtonText}>Boot bearbeiten</Text>
-                            </Pressable>
-                        </Button>
+                            <Text style={localStyles.centeredText}>Du möchtest deine Bootdaten ändern?</Text>
+                            <Button style={globalStyles.PrimaryButton} titleStyle={globalStyles.PrimaryButtonText}>
+                                <Pressable style={globalStyles.PrimaryButton} onPress={() => router.push("BoatEdit")}>
+                                    <Text style={globalStyles.PrimaryButtonText}>Boot bearbeiten</Text>
+                                </Pressable>
+                            </Button>
+                        </View>
                     </View>
-                </View>
-                </ScrollView>
-            </View>
+                </LinearGradient>
+            </ScrollView>
         );
     }
 
     return (
         <View style={[globalStyles.outerContainerGreen]}>
             <View style={[globalStyles.container, globalStyles.roundedBackgroundContainerBottomGreen]}>
+            <Text style={[globalStyles.headlineText, localStyles.customHeader]}>Mein Boot</Text>
                 <View style={[globalStyles.container, globalStyles.containerGrey]}>
 
                     <Text style={[globalStyles.headlineText, localStyles.centeredText]}>Du hast noch kein Boot erstellt.</Text>
@@ -145,5 +150,10 @@ const localStyles = StyleSheet.create({
     },
     ScrollViewContent: {
         flexGrow: 1,
+    },
+    customHeader: {
+        color: theme.lightColors.primary,
+        marginTop: 20,
+        marginBottom: 30
     }
 });

@@ -120,16 +120,16 @@ export const globalStyles = StyleSheet.create({
     overlayImage: {
         //setzt position auf absolute und füllt es aus
         ...StyleSheet.absoluteFillObject,
-        backgroundColor: 'rgba(0, 0, 0, 0.2)'
+        backgroundColor: 'rgba(0, 0, 0, 0.4)'
     },
     contentContainer: {
-        marginTop: -40,
+        marginTop: -50,
     },
     gradientContainer: {
         flex: 1,
     },
     noOverlay:{
-        marginTop: 0,
+        marginTop: -40,
         flex: 1,
     }
 

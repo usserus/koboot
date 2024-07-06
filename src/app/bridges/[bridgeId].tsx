@@ -11,9 +11,9 @@ import { fetchCurrentWaterLevel } from "../../../apis/currentWaterLevel-api";
 import { bridge } from "../../../models/bridge";
 import { LinearGradient } from "expo-linear-gradient";
 import DetailHeader from "../../../components/DetailHeader";
-import image from "../../../assets/images/alterheinbrueckekonstanz.jpg";
 import ImageHeader from "../../../components/ImageHeader";
 
+const localImage = require('../../../assets/images/alterheinbrueckekonstanz.jpg');
 
 export default function BridgeDetail() {
 
@@ -54,7 +54,7 @@ export default function BridgeDetail() {
     return (
         <ScrollView style={globalStyles.outerContainerGreen}>
             <ImageHeader
-                image={image}
+                image={localImage}
                 headlineText={"Mehr Infos zu dieser Brücke"}>
             </ImageHeader>
 

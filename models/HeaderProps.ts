@@ -1,5 +1,6 @@
+import { ImageSourcePropType } from "react-native"
+
 export type HeaderProps = {
-    name: string,
-    location: string,
-    icon: string
+    image: ImageSourcePropType,
+    headlineText: string
 }
