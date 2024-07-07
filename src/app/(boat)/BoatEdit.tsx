@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { View, Text, StyleSheet, TextInput, TouchableWithoutFeedback, Keyboard } from "react-native";
+import { View, Text, StyleSheet, TextInput, TouchableWithoutFeedback, Keyboard, ScrollView } from "react-native";
 import { globalStyles } from "../../../theme/global";
 import theme from "../../../theme/theme";
 import { Divider, Button } from '@rneui/themed';
@@ -86,8 +86,10 @@ export default function BoatEditPage() {
 
     return (
         <TouchableWithoutFeedback onPress={()=>Keyboard.dismiss()}>
-            <View style={[globalStyles.outerContainerGreen]}>
+            <ScrollView style={[globalStyles.outerContainerGreen]}>
                 <View style={[globalStyles.container, globalStyles.roundedBackgroundContainerBottomGreen]}>
+                    
+                    <Text style={[globalStyles.headlineText, localStyles.customHeader]}>Mein Boot</Text>
                     <Text style={globalStyles.headlineText}>Daten:</Text>
                     <View style={[globalStyles.container, localStyles.containerGrey]}>
                         <View style={localStyles.nameContainer}>
@@ -178,7 +180,7 @@ export default function BoatEditPage() {
                          </Button>
                     </View>
                 </View>
-            </View>
+            </ScrollView>
         </TouchableWithoutFeedback>
     );
 }
@@ -238,5 +240,10 @@ const localStyles = StyleSheet.create({
     iconText: {
         marginLeft: 5,
         color: theme.darkColors.primary,
+    },
+    customHeader: {
+        color: theme.lightColors.primary,
+        marginTop: 20,
+        marginBottom: 20
     }
 });
