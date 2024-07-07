@@ -170,12 +170,12 @@ export default function BoatEditPage() {
                     </View>*/}
 
                     <View style={globalStyles.container}>
-                        <Button style={globalStyles.PrimaryButton} titleStyle={globalStyles.PrimaryButtonText} onPress={handleSave}>
+                        <Button onPress={handleSave}>
                             Boot speichern
                         </Button>
                      </View>
                     <View style={globalStyles.container}>
-                        <Button style={globalStyles.PrimaryButton} titleStyle={globalStyles.PrimaryButtonText} onPress={handleDelete}>
+                        <Button onPress={handleDelete}>
                             Boot löschen
                          </Button>
                     </View>

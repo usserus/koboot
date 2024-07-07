@@ -1,4 +1,4 @@
-import { Dimensions, StyleSheet } from 'react-native';
+import { Dimensions, Platform, StyleSheet } from 'react-native';
 import theme from "../theme/theme";
 
 
@@ -29,10 +29,10 @@ export const globalStyles = StyleSheet.create({
     
 
     // Buttons
-    PrimaryButton: {
+    /**PrimaryButton: {
         backgroundColor: theme.lightColors.primary,
-        borderRadius: borderRadius,
-        paddingVertical: 2,
+        borderRadius: Platform.OS === "android" ? 0 : borderRadius,
+        paddingVertical: 3,
         paddingHorizontal: 10,
         alignItems: "center",
         justifyContent: "center",
@@ -43,7 +43,7 @@ export const globalStyles = StyleSheet.create({
     SecondaryButton: {
         backgroundColor: theme.lightColors.background,
         borderRadius: borderRadius,
-        paddingVertical: 2,
+        paddingVertical: 3,
         paddingHorizontal: 10,
         alignItems: "center",
         justifyContent: "center",
@@ -51,7 +51,7 @@ export const globalStyles = StyleSheet.create({
     SecondaryButtonText: {
         color: theme.darkColors.primary,
         fontSize: 14
-    },
+    },**/
 
 
 

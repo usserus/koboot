@@ -21,7 +21,6 @@ const theme = createTheme({
         color: '#E6E6E6',
       },
       buttonContainerStyle: {
-
       },
       selectedButtonStyle: {
         backgroundColor: '#0E5151',
@@ -32,7 +31,19 @@ const theme = createTheme({
         fontSize: 12,
         fontFamily: 'FireSans-Regular',
       },
+      titleStyle: {
+        color: 'white'
+      }
     },
+    Button: {
+      buttonStyle: {
+        backgroundColor: '#0E5151',
+        borderRadius: 40,
+        paddingVertical: 7,
+        paddingHorizontal: 10
+      },
+      titleStyle: { color: 'white'}
+    }
   },
 });
 

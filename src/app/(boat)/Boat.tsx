@@ -10,10 +10,13 @@ import { useFocusEffect } from "expo-router";
 import ImageHeader from "../../../components/ImageHeader";
 import DetailHeader from "../../../components/DetailHeader";
 import { LinearGradient } from "expo-linear-gradient";
+import { useNavigation } from '@react-navigation/native';
+import { BoatEditNavigationProp } from '../../../models/BoatEditNavProps';
 
 const localImage = require('../../../assets/images/alterheinbrueckekonstanz.jpg');
 
 export default function BoatPage() {
+    const navigation = useNavigation<BoatEditNavigationProp>();
 
     const [boatData, setBoatData] = useState(null);
     const loadBoatData = async () => {
@@ -81,11 +84,9 @@ export default function BoatPage() {
                             <Divider style={globalStyles.divider} />
 
                             <Text style={localStyles.centeredText}>Du möchtest deine Bootdaten ändern?</Text>
-                            <Button style={globalStyles.PrimaryButton} titleStyle={globalStyles.PrimaryButtonText}>
-                                <Pressable style={globalStyles.PrimaryButton} onPress={() => router.push("BoatEdit")}>
-                                    <Text style={globalStyles.PrimaryButtonText}>Boot bearbeiten</Text>
-                                </Pressable>
-                            </Button>
+                            <Button 
+                                title="Boot bearbeiten"
+                                onPress={() => navigation.navigate('BoatEdit')}/>
                         </View>
                     </View>
                 </LinearGradient>
@@ -109,11 +110,9 @@ export default function BoatPage() {
                     <Text style={localStyles.centeredText}>Worauf wartest du noch? Füge jetzt dein Boot hinzu und erlebe die Möglichkeiten
                         die Koboot dir für deine Booterfahrung bietet!</Text>
 
-                    <Button style={globalStyles.PrimaryButton} titleStyle={globalStyles.PrimaryButtonText}>
-                        <Pressable style={globalStyles.PrimaryButton} onPress={() => router.push("BoatEdit")}>
-                            <Text style={globalStyles.PrimaryButtonText}>Mein eigenes Boot hinzufügen</Text>
-                        </Pressable>
-                    </Button>
+                    <Button
+                        title="Mein eigenes Boot hinzufügen"
+                        onPress={() => navigation.navigate('BoatEdit')}/>
                 </View>
             </View>
         </View>
