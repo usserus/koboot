@@ -1,6 +1,5 @@
 import React from "react";
 import { View, Text, ScrollView } from "react-native";
-import { Image } from '@rneui/themed';
 import { StyleSheet } from "react-native";
 import { globalStyles } from "../../../theme/global";
 import { useLocalSearchParams } from "expo-router";
@@ -12,6 +11,7 @@ import { bridge } from "../../../models/bridge";
 import { LinearGradient } from "expo-linear-gradient";
 import DetailHeader from "../../../components/DetailHeader";
 import ImageHeader from "../../../components/ImageHeader";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const localImage = require('../../../assets/images/alterheinbrueckekonstanz.jpg');
 
@@ -22,6 +22,7 @@ export default function BridgeDetail() {
 
     const [selectedIndex, setSelectedIndex] = useState(1);
     const [data, setData] = useState(null);
+    const [boatData, setBoatData] = useState(null); // eingegebene Bootdaten
 
 
     useEffect(() => {
@@ -44,12 +45,32 @@ export default function BridgeDetail() {
                 clearanceHeight,
             });
         }
+
+        async function loadBoatData() {
+            try {
+                // Bootdaten aus AsyncStorage laden und in boatData setzen
+                const storedBoatData = await AsyncStorage.getItem('boatData');
+                if (storedBoatData) {
+                    setBoatData(JSON.parse(storedBoatData));
+                } else {
+                    // TODO: Funktion machen, die sagt, dass man zuerst ein Boot erstellen soll!
+                }
+            } catch (error) {
+                console.error('Failed to load boat data', error);
+            }
+        }
         loadData();
+        loadBoatData();
     }, [selectedIndex]);
 
-    if (!data) {
+    if (!data || !boatData) {
         return <Text>Loading...</Text>;
     }
+
+    // Boothöhe extrahieren
+    const { boatHeight } = boatData;
+    // Höhendifferenz zw Brücke und Boot
+    const clearanceDifference = (parseFloat(data.clearanceHeight) - parseFloat(boatHeight)).toFixed(2);
 
     return (
         <ScrollView style={globalStyles.outerContainerGreen}>
@@ -100,7 +121,7 @@ export default function BridgeDetail() {
                         </View>
                         <View style={localStyles.dataContainer}>
                             <Text style={[globalStyles.text]}>Abstand vom Boot zur Brücke:</Text>
-                            <Text style={[globalStyles.boldText]}>28.06.2024:</Text>
+                            <Text style={[globalStyles.boldText]}>{clearanceDifference}</Text>
                         </View>
                     </View>
                 </View>
