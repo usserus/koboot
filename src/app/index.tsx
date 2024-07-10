@@ -12,22 +12,26 @@ export default function HomePage(){
 
     useEffect(() => {
         (async () => {
-            //Standort von User abfragen
-            let { status } = await Location.requestForegroundPermissionsAsync();
-            //wenn User ablehnt
-            if (status !== 'granted') {
-                setErrorMsg('Du hast den Standortzugriff zur Karte verweigert.');
-                return;
-            }
+            try {
+                //Standort von User abfragen
+                let {status} = await Location.requestForegroundPermissionsAsync();
+                //wenn User ablehnt
+                if (status !== 'granted') {
+                    setErrorMsg('Du hast den Standortzugriff zur Karte verweigert.');
+                    return;
+                }
 
-            //aktuellen Standort abfragen, in location speichern
-            let location = await Location.getCurrentPositionAsync({});
-            setLocation({
-                latitude: location.coords.latitude,
-                longitude: location.coords.longitude,
-                latitudeDelta: 0.0922,
-                longitudeDelta: 0.0421,
-            });
+                //aktuellen Standort abfragen, in location speichern
+                let location = await Location.getCurrentPositionAsync({});
+                setLocation({
+                    latitude: location.coords.latitude,
+                    longitude: location.coords.longitude,
+                    latitudeDelta: 0.0922,
+                    longitudeDelta: 0.0421,
+                });
+            } catch (error) {
+                setErrorMsg('Du hast den Standortzugriff zur Karte verweigert.');
+            }
         })();
     }, []);
 

@@ -97,7 +97,7 @@ export default function BridgeDetail() {
 
                         {loading ? (
                             <View>
-                                <Text>Loading...</Text>
+                                <Text style={localStyles.loadingText}>Seite lädt...</Text>
                             </View>
                         ) : error ? (
                             <View>
@@ -173,4 +173,8 @@ const localStyles = StyleSheet.create({
     notPossible: {
         color: '#d23b07',
     },
+    loadingText: {
+        display: "flex",
+        justifyContent: "center",
+    }
 });
