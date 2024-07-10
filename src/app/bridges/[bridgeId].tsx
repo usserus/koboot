@@ -13,37 +13,42 @@ import DetailHeader from "../../../components/DetailHeader";
 import ImageHeader from "../../../components/ImageHeader";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const localImage = require('../../../assets/images/alterheinbrueckekonstanz.jpg');
-
 export default function BridgeDetail() {
 
     const item = useLocalSearchParams() as unknown as bridge;
     const { url, bridgeName, location, refClearanceHeight, image } = item;
-
-    const [selectedIndex, setSelectedIndex] = useState(1);
+    const [selectedIndex, setSelectedIndex] = useState<number>(1);
     const [data, setData] = useState(null);
     const [boatData, setBoatData] = useState(null); // eingegebene Bootdaten
-
-
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState(null);
+    
     useEffect(() => {
         async function loadData() {
-            const currentWaterLevel = await fetchCurrentWaterLevel();
-            let measuringTime = new Date(currentWaterLevel.timestamp).toLocaleString();
-            const waterLevel = currentWaterLevel.value / 100;
-            const refWaterLevel = 2.5;
-            let clearanceHeight;
-            if (bridgeName !== "Alter Rheinbrücke Konstanz") {
-                clearanceHeight = (Number(refClearanceHeight) - (waterLevel - refWaterLevel)).toFixed(2);
-            } else {
-                const stringValue = refClearanceHeight.toString();
-                const valuesArray = stringValue.split(',').map(Number);
-                clearanceHeight = (valuesArray[selectedIndex] - (waterLevel - refWaterLevel)).toFixed(2);
+            try {
+                // Daten für Wasserpegel und Durchfahrtshöhe laden
+                const currentWaterLevel = await fetchCurrentWaterLevel();
+                let measuringTime = new Date(currentWaterLevel.timestamp).toLocaleString();
+                const waterLevel: number = currentWaterLevel.value / 100;
+                const refWaterLevel: number = 2.5;
+                let clearanceHeight: string = '';
+                if (bridgeName !== "Alter Rheinbrücke Konstanz") {
+                    clearanceHeight = (Number(refClearanceHeight) - (waterLevel - refWaterLevel)).toFixed(2);
+                } else {
+                    const stringValue = refClearanceHeight.toString();
+                    const valuesArray = stringValue.split(',').map(Number);
+                    clearanceHeight = (valuesArray[selectedIndex] - (waterLevel - refWaterLevel)).toFixed(2);
+                }
+                setData({
+                    measuringTime,
+                    waterLevel,
+                    clearanceHeight,
+                });
+            } catch (err) {
+                setError(err);
+            } finally {
+                setLoading(false);
             }
-            setData({
-                measuringTime,
-                waterLevel,
-                clearanceHeight,
-            });
         }
 
         async function loadBoatData() {
@@ -52,8 +57,6 @@ export default function BridgeDetail() {
                 const storedBoatData = await AsyncStorage.getItem('boatData');
                 if (storedBoatData) {
                     setBoatData(JSON.parse(storedBoatData));
-                } else {
-                    // TODO: Funktion machen, die sagt, dass man zuerst ein Boot erstellen soll!
                 }
             } catch (error) {
                 console.error('Failed to load boat data', error);
@@ -63,23 +66,22 @@ export default function BridgeDetail() {
         loadBoatData();
     }, [selectedIndex]);
 
-    if (!data || !boatData) {
-        return <Text>Loading...</Text>;
+    let isPassagePossible: boolean = false;
+    let clearanceDifference: number = 0;
+    if (data && boatData) {
+        // Höhendifferenz zwischen Brücke und Boot
+        clearanceDifference = parseFloat((parseFloat(data.clearanceHeight) - parseFloat(boatData.boatHeight)).toFixed(2));
+        if (clearanceDifference > 0) {
+            isPassagePossible = true;
+        }
     }
-
-    // Boothöhe extrahieren
-    const { boatHeight } = boatData;
-    // Höhendifferenz zwischen Brücke und Boot
-    const clearanceDifference: number = parseFloat((parseFloat(data.clearanceHeight) - parseFloat(boatHeight)).toFixed(2));
-    const isPassagePossible = clearanceDifference > 0;
 
     return (
         <ScrollView style={globalStyles.outerContainerGreen}>
             <ImageHeader
-                image={localImage}
-                headlineText={"Mehr Infos zu dieser Brücke"}>
-            </ImageHeader>
-
+                image={image}
+                headlineText={"Mehr Infos zu dieser Brücke"}
+            />
 
             <LinearGradient
                 colors={['transparent', theme.lightColors.primary]}
@@ -90,55 +92,66 @@ export default function BridgeDetail() {
                         <DetailHeader
                             name={item.bridgeName}
                             location={item.location}
-                            icon={"location-outline"}>
-                        </DetailHeader>
+                            icon={"location-outline"}
+                        />
 
-                        {!boatData && (
-                            <>
-                                <Text style={localStyles.passageText}>
-                                    {isPassagePossible ? 'DURCHFAHRT MÖGLICH' : 'DURCHFAHRT NICHT MÖGLICH'}
-                                </Text>
-                                <Divider style={globalStyles.divider} />
-                            </>
-                        )}
-
-                        <Text style={[globalStyles.headlineText]}>Durchfahrt</Text>
-
-                        {bridgeName === "Alter Rheinbrücke Konstanz" && (
-                            <ButtonGroup
-                                buttons={['links', 'mitte', 'rechts']}
-                                selectedIndex={selectedIndex}
-                                onPress={(value) => {
-                                    setSelectedIndex(value);
-                                }}
-                                containerStyle={{ marginBottom: 20, marginTop: 20 }}
-                            />
-                        )}
-
-                        <View style={localStyles.dataContainer}>
-                            <Text style={[globalStyles.text]}>Zeitpunkt der Wasserpegel-Messung:</Text>
-                            <Text style={[globalStyles.boldText]}>{data.measuringTime}</Text>
-                        </View>
-                        <View style={localStyles.dataContainer}>
-                            <Text style={[globalStyles.text]}>Wasserpegel:</Text>
-                            <Text style={[globalStyles.boldText]}>{data.waterLevel}</Text>
-                        </View>
-                        <View style={localStyles.dataContainer}>
-                            <Text style={[globalStyles.text]}>Durchfahrshöhe:</Text>
-                            <Text style={[globalStyles.boldText]}>{data.clearanceHeight}</Text>
-                        </View>
-
-                        {!boatData ? (
-                            <View style={localStyles.dataContainer}>
-                                <Text style={[globalStyles.text]}>Abstand vom Boot zur Brücke:</Text>
-                                <Text style={[globalStyles.boldText]}>{clearanceDifference} m</Text>
+                        {loading ? (
+                            <View>
+                                <Text>Loading...</Text>
+                            </View>
+                        ) : error ? (
+                            <View>
+                                <Text>Error: {error.message}</Text>
                             </View>
                         ) : (
-                            <View style={localStyles.dataContainer}>
-                                <Text style={[globalStyles.text]}>Zum Anzeigen des Abstandes von Boot zur Brücke, bitte im Menüpunkt "Boot" ein Boot einspeichern</Text>
-                            </View>
-                        )}
+                            <>
+                                {boatData && data && (
+                                    <>
+                                        <Text style={localStyles.passageText}>
+                                            {isPassagePossible ? 'DURCHFAHRT MÖGLICH' : 'DURCHFAHRT NICHT MÖGLICH'}
+                                        </Text>
+                                        <Divider style={globalStyles.divider} />
+                                    </>
+                                )}
 
+                                <Text style={[globalStyles.headlineText]}>Durchfahrt</Text>
+
+                                {bridgeName === "Alter Rheinbrücke Konstanz" && (
+                                    <ButtonGroup
+                                        buttons={['links', 'mitte', 'rechts']}
+                                        selectedIndex={selectedIndex}
+                                        onPress={(value) => {
+                                            setSelectedIndex(value);
+                                        }}
+                                        containerStyle={{ marginBottom: 20, marginTop: 20 }}
+                                    />
+                                )}
+
+                                <View style={localStyles.dataContainer}>
+                                    <Text style={[globalStyles.text]}>Zeitpunkt der Wasserpegel-Messung:</Text>
+                                    <Text style={[globalStyles.boldText]}>{data.measuringTime}</Text>
+                                </View>
+                                <View style={localStyles.dataContainer}>
+                                    <Text style={[globalStyles.text]}>Wasserpegel:</Text>
+                                    <Text style={[globalStyles.boldText]}>{data.waterLevel} m</Text>
+                                </View>
+                                <View style={localStyles.dataContainer}>
+                                    <Text style={[globalStyles.text]}>Durchfahrshöhe:</Text>
+                                    <Text style={[globalStyles.boldText]}>{data.clearanceHeight} m</Text>
+                                </View>
+
+                                {boatData ? (
+                                    <View style={localStyles.dataContainer}>
+                                        <Text style={[globalStyles.text]}>Abstand vom Boot zur Brücke:</Text>
+                                        <Text style={[globalStyles.boldText]}>{clearanceDifference} m</Text>
+                                    </View>
+                                ) : (
+                                    <View style={localStyles.dataContainer}>
+                                        <Text style={[globalStyles.text]}>Zum Anzeigen des Abstandes zwischen Boot und Brücke, sowie ob aktuell eine Durchfahrt möglich ist, bitte unter dem Menüpunkt "Boot" ein Boot einspeichern.</Text>
+                                    </View>
+                                )}
+                            </>
+                        )}
                     </View>
                 </View>
             </LinearGradient>

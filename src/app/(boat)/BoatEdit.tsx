@@ -5,15 +5,10 @@ import theme from "../../../theme/theme";
 import { Divider, Button } from '@rneui/themed';
 import { useNavigation } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
-
+import { BoatData } from "../../../models/boatData";
 
 export default function BoatEditPage() {
-
     const navigation = useNavigation();
-    const [hasPermission, setHasPermission] = useState(null);
-    const [cameraRef, setCameraRef] = useState(null);
-
     const [boatName, setBoatName] = useState('');
     const [boatManufacturer, setBoatManufacturer] = useState('');
     const [boatLength, setBoatLength] = useState('');
@@ -21,14 +16,13 @@ export default function BoatEditPage() {
     const [boatHeight, setBoatHeight] = useState('');
     const [boatDraft, setBoatDraft] = useState('');
 
-
-
     useEffect(() => {
+        // Bootdaten aus AsyncStorage laden und in die entsprechenden State-Variablen setzen
         const loadBoatData = async () => {
             try {
                 const storedBoatData = await AsyncStorage.getItem('boatData');
                 if (storedBoatData) {
-                    const boatData = JSON.parse(storedBoatData);
+                    const boatData: BoatData = JSON.parse(storedBoatData);
                     setBoatName(boatData.boatName || '');
                     setBoatManufacturer(boatData.boatManufacturer || '');
                     setBoatLength(boatData.boatLength || '');
@@ -50,8 +44,7 @@ export default function BoatEditPage() {
             alert('Bitte fülle alle Felder aus.');
             return;
         }
-
-        // Wenn alle Felder ausgefüllt sind, speichern Sie die Daten
+        // Wenn alle Felder ausgefüllt sind, alle Daten speichern
         const boatData = {
             boatName,
             boatManufacturer,
@@ -61,14 +54,16 @@ export default function BoatEditPage() {
             boatDraft
         };
         try {
+            // Bootdaten in AsyncStorage speichern und zurück zur vorherigen Seite navigieren
             await AsyncStorage.setItem('boatData', JSON.stringify(boatData));
             navigation.goBack();
         } catch (error) {
+            // Fehlermeldung ausgeben, wenn das Speichern fehlschlägt
             console.error('Failed to save boat data', error);
         }
     };
 
-
+    // Funktion zum Löschen der Bootdaten
     const handleDelete = async () => {
         try {
             await AsyncStorage.removeItem('boatData');
@@ -78,8 +73,9 @@ export default function BoatEditPage() {
         }
     };
 
+    // Funktion zum Überprüfen, ob die eingegebene Zahl eine gültige Dezimalzahl ist
     const handleNumberChange = (setter) => (value) => {
-        if (value === '' || /^\d*\.?\d*$/.test(value)) {
+        if (value === '' || /^\d*[\.,]?\d*$/.test(value)) {
             setter(value);
         }
     };
@@ -88,7 +84,6 @@ export default function BoatEditPage() {
         <TouchableWithoutFeedback onPress={()=>Keyboard.dismiss()}>
             <ScrollView style={[globalStyles.outerContainerGreen]}>
                 <View style={[globalStyles.container, globalStyles.roundedBackgroundContainerBottomGreen]}>
-                    
                     <Text style={[globalStyles.headlineText, localStyles.customHeader]}>Mein Boot</Text>
                     <Text style={globalStyles.headlineText}>Daten:</Text>
                     <View style={[globalStyles.container, localStyles.containerGrey]}>
@@ -100,9 +95,7 @@ export default function BoatEditPage() {
                                 onChangeText={setBoatName}
                             />
                         </View>
-
                         <Divider style={localStyles.divider} />
-
                         <View style={localStyles.nameContainer}>
                             <Text style={localStyles.nameLabel}>Hersteller:</Text>
                             <TextInput
@@ -111,9 +104,7 @@ export default function BoatEditPage() {
                                 onChangeText={setBoatManufacturer}
                             />
                         </View>
-
                         <Divider style={localStyles.divider} />
-
                         <View style={localStyles.nameContainer}>
                             <Text style={localStyles.nameLabel}>Länge:</Text>
                             <TextInput
@@ -123,9 +114,7 @@ export default function BoatEditPage() {
                                 onChangeText={handleNumberChange(setBoatLength)}
                             />
                         </View>
-
                         <Divider style={localStyles.divider} />
-
                         <View style={localStyles.nameContainer}>
                             <Text style={localStyles.nameLabel}>Breite:</Text>
                             <TextInput
@@ -135,9 +124,7 @@ export default function BoatEditPage() {
                                 onChangeText={handleNumberChange(setBoatWidth)}
                             />
                         </View>
-
                         <Divider style={localStyles.divider} />
-
                         <View style={localStyles.nameContainer}>
                             <Text style={localStyles.nameLabel}>Höhe:</Text>
                             <TextInput
@@ -147,9 +134,7 @@ export default function BoatEditPage() {
                                 onChangeText={handleNumberChange(setBoatHeight)}
                             />
                         </View>
-
                         <Divider style={localStyles.divider} />
-
                         <View style={localStyles.nameContainer}>
                             <Text style={localStyles.nameLabel}>Tiefgang:</Text>
                             <TextInput
@@ -160,15 +145,6 @@ export default function BoatEditPage() {
                             />
                         </View>
                     </View>
-
-
-                    {/*<Text style={globalStyles.headlineText}>Foto:</Text>
-                    <View style={[globalStyles.container, localStyles.containerGrey]}>
-                        <View style={localStyles.nameContainer}>
-                            <Text style={localStyles.nameLabel}>Foto machen:</Text>
-                        </View>
-                    </View>*/}
-
                     <View style={globalStyles.container}>
                         <Button onPress={handleSave}>
                             Boot speichern
