@@ -129,7 +129,7 @@ export const globalStyles = StyleSheet.create({
         flex: 1,
     },
     noOverlay:{
-        marginTop: -40,
+        marginTop: Platform.OS === 'ios' ? 0 : -40,
         flex: 1,
     }
 

@@ -13,7 +13,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from '@react-navigation/native';
 import { BoatEditNavigationProp } from '../../../models/BoatEditNavProps';
 
-const localImage = require('../../../assets/images/alterheinbrueckekonstanz.jpg');
+const localImage = require('../../../assets/images/boat.jpg');
 
 export default function BoatPage() {
     const navigation = useNavigation<BoatEditNavigationProp>();
