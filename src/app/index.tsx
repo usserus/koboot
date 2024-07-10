@@ -16,7 +16,7 @@ export default function HomePage(){
             let { status } = await Location.requestForegroundPermissionsAsync();
             //wenn User ablehnt
             if (status !== 'granted') {
-                setErrorMsg('Permission to access location was denied');
+                setErrorMsg('Du hast den Standortzugriff zur Karte verweigert.');
                 return;
             }
 

@@ -107,7 +107,7 @@ export default function BridgeDetail() {
                             <>
                                 {boatData && data && (
                                     <>
-                                        <Text style={localStyles.passageText}>
+                                        <Text style={[localStyles.passageText, !isPassagePossible && localStyles.notPossible]}>
                                             {isPassagePossible ? 'DURCHFAHRT MÖGLICH' : 'DURCHFAHRT NICHT MÖGLICH'}
                                         </Text>
                                         <Divider style={globalStyles.divider} />
@@ -169,5 +169,8 @@ const localStyles = StyleSheet.create({
         fontWeight: 'bold',
         marginTop: 10,
         marginBottom: 10
-    }
+    },
+    notPossible: {
+        color: '#d23b07',
+    },
 });
