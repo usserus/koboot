@@ -43,3 +43,8 @@ Die Anwendung wird nun auf deinem Gerät gestartet.
 
 🌐 Besuche [GitHub Repository](https://github.com/usserus/koboot.git) für den Quellcode und weitere Details.
 
+
+## Hintergrund
+Diese App wurde von Emil Düringer, Anna Kasbauer und Theresa Schessni im Rahmen der Lehrveranstaltung Mobile Web Apps 
+im Sommersemester 2024 entwickelt.
+
