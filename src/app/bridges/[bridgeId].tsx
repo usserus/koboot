@@ -71,6 +71,7 @@ export default function BridgeDetail() {
     const { boatHeight } = boatData;
     // Höhendifferenz zw Brücke und Boot
     const clearanceDifference = (parseFloat(data.clearanceHeight) - parseFloat(boatHeight)).toFixed(2);
+    const isPassagePossible = clearanceDifference > 0;
 
     return (
         <ScrollView style={globalStyles.outerContainerGreen}>
@@ -91,7 +92,9 @@ export default function BridgeDetail() {
                             location={item.location}
                             icon={"location-outline"}>
                         </DetailHeader>
-                        <Text style={localStyles.passageText}>DURCHFAHRT MÖGLICH</Text>
+                        <Text style={localStyles.passageText}>
+                            {isPassagePossible ? 'DURCHFAHRT MÖGLICH' : 'DURCHFAHRT NICHT MÖGLICH'}
+                        </Text>
                         <Divider style={globalStyles.divider} />
 
                         <Text style={[globalStyles.headlineText]}>Durchfahrt</Text>
@@ -121,7 +124,7 @@ export default function BridgeDetail() {
                         </View>
                         <View style={localStyles.dataContainer}>
                             <Text style={[globalStyles.text]}>Abstand vom Boot zur Brücke:</Text>
-                            <Text style={[globalStyles.boldText]}>{clearanceDifference}</Text>
+                            <Text style={[globalStyles.boldText]}>{clearanceDifference} m</Text>
                         </View>
                     </View>
                 </View>
