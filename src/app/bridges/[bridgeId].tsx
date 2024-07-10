@@ -69,8 +69,8 @@ export default function BridgeDetail() {
 
     // Boothöhe extrahieren
     const { boatHeight } = boatData;
-    // Höhendifferenz zw Brücke und Boot
-    const clearanceDifference = (parseFloat(data.clearanceHeight) - parseFloat(boatHeight)).toFixed(2);
+    // Höhendifferenz zwischen Brücke und Boot
+    const clearanceDifference: number = parseFloat((parseFloat(data.clearanceHeight) - parseFloat(boatHeight)).toFixed(2));
     const isPassagePossible = clearanceDifference > 0;
 
     return (
@@ -92,10 +92,15 @@ export default function BridgeDetail() {
                             location={item.location}
                             icon={"location-outline"}>
                         </DetailHeader>
-                        <Text style={localStyles.passageText}>
-                            {isPassagePossible ? 'DURCHFAHRT MÖGLICH' : 'DURCHFAHRT NICHT MÖGLICH'}
-                        </Text>
-                        <Divider style={globalStyles.divider} />
+
+                        {!boatData && (
+                            <>
+                                <Text style={localStyles.passageText}>
+                                    {isPassagePossible ? 'DURCHFAHRT MÖGLICH' : 'DURCHFAHRT NICHT MÖGLICH'}
+                                </Text>
+                                <Divider style={globalStyles.divider} />
+                            </>
+                        )}
 
                         <Text style={[globalStyles.headlineText]}>Durchfahrt</Text>
 
@@ -122,10 +127,18 @@ export default function BridgeDetail() {
                             <Text style={[globalStyles.text]}>Durchfahrshöhe:</Text>
                             <Text style={[globalStyles.boldText]}>{data.clearanceHeight}</Text>
                         </View>
-                        <View style={localStyles.dataContainer}>
-                            <Text style={[globalStyles.text]}>Abstand vom Boot zur Brücke:</Text>
-                            <Text style={[globalStyles.boldText]}>{clearanceDifference} m</Text>
-                        </View>
+
+                        {!boatData ? (
+                            <View style={localStyles.dataContainer}>
+                                <Text style={[globalStyles.text]}>Abstand vom Boot zur Brücke:</Text>
+                                <Text style={[globalStyles.boldText]}>{clearanceDifference} m</Text>
+                            </View>
+                        ) : (
+                            <View style={localStyles.dataContainer}>
+                                <Text style={[globalStyles.text]}>Zum Anzeigen des Abstandes von Boot zur Brücke, bitte im Menüpunkt "Boot" ein Boot einspeichern</Text>
+                            </View>
+                        )}
+
                     </View>
                 </View>
             </LinearGradient>
