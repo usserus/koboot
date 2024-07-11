@@ -5,7 +5,6 @@ import {Image} from "@rneui/themed";
 import React from "react";
 
 
-
 export default function ImageHeader({ image, headlineText}: HeaderProps) {
     return (
         <View>

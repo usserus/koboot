@@ -14,9 +14,9 @@ import ImageHeader from "../../../components/ImageHeader";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function BridgeDetail() {
-
     const item = useLocalSearchParams() as unknown as bridge;
     const { url, bridgeName, location, refClearanceHeight, image } = item;
+
     const [selectedIndex, setSelectedIndex] = useState<number>(1);
     const [data, setData] = useState(null);
     const [boatData, setBoatData] = useState(null); // eingegebene Bootdaten

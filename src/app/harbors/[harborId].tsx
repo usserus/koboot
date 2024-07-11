@@ -13,6 +13,7 @@ import ImageHeader from "../../../components/ImageHeader";
 
 
 export default function HarborDetail(){
+    //Datentyp zuweisen
     const item = useLocalSearchParams() as unknown as harbor;
     const { harborName, location, image, description, openingHours } = item;
 
@@ -30,8 +31,8 @@ export default function HarborDetail(){
                 <View style={[globalStyles.contentContainer, globalStyles.noOverlay]}>
                     <View style={[globalStyles.container, globalStyles.roundedBackgroundContainerGreen]}>
                         <DetailHeader
-                            name={item.harborName}
-                            location={item.location}
+                            name={harborName}
+                            location={location}
                             icon={"location-outline"}>
                         </DetailHeader>
                         <Text style={[globalStyles.headlineText]}>Beschreibung</Text>
@@ -43,7 +44,7 @@ export default function HarborDetail(){
                         <View>
                             <View style={localStyles.iconText}>
                                 <Ionicons name={"time-outline"} size={18} color="black" />
-                                <Text style={[globalStyles.text]}>{item.openingHours}</Text>
+                                <Text style={[globalStyles.text]}>{openingHours}</Text>
                             </View>
                             <Divider style={globalStyles.divider} />
                         </View>

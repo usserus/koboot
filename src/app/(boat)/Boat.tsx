@@ -16,6 +16,7 @@ import { BoatEditNavigationProp } from '../../../models/BoatEditNavProps';
 const localImage = require('../../../assets/images/boat.jpg');
 
 export default function BoatPage() {
+    // für Button zum Navigieren
     const navigation = useNavigation<BoatEditNavigationProp>();
 
     const [boatData, setBoatData] = useState(null);
@@ -28,12 +29,14 @@ export default function BoatPage() {
         }
     };
 
+    // für Stack-Handling
     useFocusEffect(
         React.useCallback(() => {
             loadBoatData();
         }, [])
     );
 
+    // wenn bootdaten vorhanden
     if (boatData) {
         return (
             <ScrollView style={globalStyles.outerContainerGreen}>
@@ -94,6 +97,7 @@ export default function BoatPage() {
         );
     }
 
+    // wenn keine bootdaten vorhanden
     return (
         <View style={[globalStyles.outerContainerGreen]}>
             <View style={[globalStyles.container, globalStyles.roundedBackgroundContainerBottomGreen]}>

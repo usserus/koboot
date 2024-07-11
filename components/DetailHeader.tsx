@@ -2,15 +2,11 @@ import React from "react";
 import { View, Text } from "react-native";
 import { globalStyles } from "../theme/global";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import { HeaderProps } from '../models/HeaderProps';
 import { StyleSheet } from "react-native";
 import { Divider } from "@rneui/base";
+import {DetailHeaderProps} from "../models/DetailHeaderProps";
 
-interface DetailHeaderProps {
-    name: string;
-    location: string;
-    icon?: string; // Icon name is optional
-}
+
 
 export default function DetailHeader({ name, location, icon }: DetailHeaderProps) {
     return (

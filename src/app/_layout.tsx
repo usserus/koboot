@@ -22,6 +22,7 @@ export default function TabsLayout() {
         if (error) throw error;
     }, [error]);
 
+    // SplachScreen: first loading screen
     useEffect(() => {
         if (loaded) {
             SplashScreen.hideAsync();
